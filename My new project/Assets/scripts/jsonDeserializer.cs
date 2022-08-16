@@ -59,12 +59,14 @@ public class jsonDeserializer : MonoBehaviour
     /// <summary>
     /// 讀取在python處理完成的rotations
     /// </summary>
-    public MediaPipeResult readAndParseRotation(string fileName, bool printText=false)
+    public MediaPipeResult readAndParseRotation(string fileName, bool printText=false, bool fromUnity=false)
     {
         string jsonText = File.ReadAllText(Path.Combine(Application.dataPath, fileName));
         MediaPipeResult handRotation = JsonUtility.FromJson<MediaPipeResult>(
             "{\"results\":" + jsonText + "}");
-        if(printText)
+        if(fromUnity)
+            handRotation= JsonUtility.FromJson<MediaPipeResult>(jsonText);
+        if (printText)
             print(jsonText.Substring(0, 30));
         return handRotation;
     }

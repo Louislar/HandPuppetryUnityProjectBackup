@@ -6,6 +6,9 @@ using UnityEngine.Networking;
 public class HttpReceiver : MonoBehaviour
 {
     public bool serverOn;
+    public bool updatePosToAvatar;
+    public avatarController avatarController;
+    private jsonDeserializer jsonD;
 
     // Start is called before the first frame update
     void Start()
@@ -13,6 +16,7 @@ public class HttpReceiver : MonoBehaviour
         if(serverOn)
         {
             StartCoroutine(ReceiveTextFromHttpServer());
+            jsonD = new jsonDeserializer();
         }
     }
 
@@ -32,10 +36,20 @@ public class HttpReceiver : MonoBehaviour
                 // Show results as text
                 Debug.Log(www.downloadHandler.text);
 
+                // json text to data
+                MediaPipeResult handRotation = JsonUtility.FromJson<MediaPipeResult>(
+                    "{\"results\":" + www.downloadHandler.text + "}"
+                    );
+
+                // update position data to avatar
+                if(updatePosToAvatar)
+                    avatarController.updateSynthesisPositionOnce(handRotation.results[0]);
+
                 // Or retrieve results as binary data
                 byte[] results = www.downloadHandler.data;
             }
-            yield return new WaitForSeconds(0.1f);
+            //yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.05f);
         }
     }
 

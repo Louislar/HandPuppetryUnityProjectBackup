@@ -26,7 +26,8 @@ public class avatarController : MonoBehaviour
     public float positionRecordLength;
     private List<MediaPipeHandLMs> avatarPositionData;
     [Header("Position read in settings")]
-    public bool isReadApplyHumanPositions;
+    public bool isReadHumanPositions;
+    public bool isApplyHumanPositions;
     public int readPositionsJointsNum;
     public Vector3 originHipPosition;
     private string readInHumanPositionFile;
@@ -139,7 +140,11 @@ public class avatarController : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
         }
         jsonDeserializer jsonConverter = new jsonDeserializer();
-        jsonConverter.serializeAndOutputFile(new MediaPipeResult() { results=avatarRotationData.ToArray() }, "jsonRotationData/bodyDBRotationRecord/leftSideKick.json");
+        //jsonConverter.serializeAndOutputFile(new MediaPipeResult() { results=avatarRotationData.ToArray() }, "jsonRotationData/bodyDBRotationRecord/leftSideKick.json");
+        jsonConverter.serializeAndOutputFile(new MediaPipeResult() { results = avatarRotationData.ToArray() }, "jsonRotationData/bodyDBRotationRecord/runSprint.json");
+        //jsonConverter.serializeAndOutputFile(new MediaPipeResult() { results = avatarRotationData.ToArray() }, "jsonRotationData/bodyDBRotationRecord/walkCrossover.json");
+        //jsonConverter.serializeAndOutputFile(new MediaPipeResult() { results = avatarRotationData.ToArray() }, "jsonRotationData/bodyDBRotationRecord/walkInjured.json");
+        //jsonConverter.serializeAndOutputFile(new MediaPipeResult() { results = avatarRotationData.ToArray() }, "jsonRotationData/bodyDBRotationRecord/runSprint.json");
         //print($"get bone: {avatarAnim.GetBoneTransform(HumanBodyBones.LeftUpperLeg).localEulerAngles.x}");
         yield return null;
     }
@@ -199,7 +204,10 @@ public class avatarController : MonoBehaviour
             new MediaPipeResult() { results = avatarPositionData.ToArray() },
             //"jsonPositionData/bodyMotionPosition/leftFrontKickPosition.json"
             //"jsonPositionData/bodyMotionPosition/leftFrontKickPositionFullJointsWithHead.json"  // 輸出所有身體joints使用的檔名
-            "jsonPositionData/bodyMotionPosition/leftSideKickPositionFullJointsWithHead.json"  // 輸出所有身體joints使用的檔名
+            //"jsonPositionData/bodyMotionPosition/leftSideKickPositionFullJointsWithHead.json"  // 輸出所有身體joints使用的檔名
+            //"jsonPositionData/bodyMotionPosition/walkCrossoverPositionFullJointsWithHead.json"  // 輸出所有身體joints使用的檔名
+            //"jsonPositionData/bodyMotionPosition/walkInjuredPositionFullJointsWithHead.json"  // 輸出所有身體joints使用的檔名
+            "jsonPositionData/bodyMotionPosition/runSprintPositionFullJointsWithHead.json"  // 輸出所有身體joints使用的檔名
             //"jsonPositionData/bodyMotionPosition/TPose.json" // 輸出T-pose的position
             );
         // print($"get bone: {avatarAnim.GetBoneTransform(HumanBodyBones.LeftUpperLeg).position.x}");
@@ -287,7 +295,11 @@ public class avatarController : MonoBehaviour
             // 改變檔案名稱 + "_position" + ".json"
             // 指定folder儲存position的輸出資料
             HumanRotationFileNMs.Add(
-                Path.Combine(Application.dataPath, "jsonPositionData/leftSideKickCombinations/" + fileName)
+                //Path.Combine(Application.dataPath, "jsonPositionData/leftSideKickCombinations/" + fileName)
+                //Path.Combine(Application.dataPath, "jsonPositionData/walkCrossoverCombinations/" + fileName)
+                //Path.Combine(Application.dataPath, "jsonPositionData/walkInjuredCombinations/" + fileName)
+                //Path.Combine(Application.dataPath, "jsonPositionData/runSprintCombinations/" + fileName)
+                Path.Combine(Application.dataPath, "jsonPositionData/runSprintLinearMappingCombinations/" + fileName)
                 );
             // print(curHumanRotationFileNM);
         }
@@ -317,7 +329,7 @@ public class avatarController : MonoBehaviour
         {
             updateSynthesisPositionOnce(readInHumanPositionResult.results[curIndex]);
             ++curIndex;
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.03f);
         }
         yield return null;
     }
@@ -342,7 +354,13 @@ public class avatarController : MonoBehaviour
         for (int i=0; i < readPositionsJointsNum; ++i) { SynthesisJointsPos[i] = new handLMsController.JointBone(); }
         jsonDeserializer jsonDeserializer = new jsonDeserializer();
         //readInHumanPositionFile = "jsonPositionData/afterSynthesis/leftFrontKick_foot_all_ref_left.json";
-        readInHumanPositionFile = "jsonPositionData/afterSynthesis/leftFrontKick_EWMA.json";
+        //readInHumanPositionFile = "jsonPositionData/afterSynthesis/leftFrontKick_EWMA.json";
+        //readInHumanPositionFile = "jsonPositionData/afterSynthesis/leftSideKick_EWMA.json";
+        //readInHumanPositionFile = "jsonPositionData/afterSynthesis/walkCrossover_EWMA.json";
+        //readInHumanPositionFile = "jsonPositionData/afterSynthesis/walkInjured_EWMA.json";
+        //readInHumanPositionFile = "jsonPositionData/afterSynthesis/runSprint_EWMA.json";
+        readInHumanPositionFile = "jsonPositionData/afterSynthesis/runSprintLinearMapping_EWMA.json";
+        //readInHumanPositionFile = "jsonPositionData/afterSynthesis/leftFrontKick_stream_EWMA.json";
         readInHumanPositionResult = jsonDeserializer.readAndParseRotation(
             readInHumanPositionFile
             );
@@ -352,7 +370,7 @@ public class avatarController : MonoBehaviour
         //readInHumanPositionResult = JsonUtility.FromJson<MediaPipeResult>(jsonText);
         // For test end
         // visualize synthesis後的position data
-        if (isReadApplyHumanPositions)
+        if (isReadHumanPositions)
         {
             StartCoroutine(updateSynthesisPosition());
         }
@@ -423,7 +441,7 @@ public class avatarController : MonoBehaviour
             avatarAnim.SetBoneLocalRotation(HumanBodyBones.RightLowerLeg, jointPoints[PositionIndex.rShin.Int()].InitRotation);
         }
         // 更新讀取的synthesis human positions到human avatar身上
-        if(isReadApplyHumanPositions)
+        if(isApplyHumanPositions)
         {
             
             avatarAnim.SetBoneLocalRotation(HumanBodyBones.RightShoulder, Quaternion.Euler(new Vector3()));
@@ -446,7 +464,12 @@ public class avatarController : MonoBehaviour
             avatarAnim.SetBoneLocalRotation(HumanBodyBones.LeftFoot, Quaternion.Euler(new Vector3()));
             avatarAnim.SetBoneLocalRotation(HumanBodyBones.LeftToes, Quaternion.Euler(new Vector3()));
 
-            print("synthesis position: " + (SynthesisJointsPos[2].Pos3D + originHipPosition).ToString());
+            avatarAnim.SetBoneLocalRotation(HumanBodyBones.Hips, Quaternion.Euler(new Vector3()));
+            avatarAnim.SetBoneLocalRotation(HumanBodyBones.Spine, Quaternion.Euler(new Vector3()));
+            avatarAnim.SetBoneLocalRotation(HumanBodyBones.Chest, Quaternion.Euler(new Vector3()));
+            avatarAnim.SetBoneLocalRotation(HumanBodyBones.UpperChest, Quaternion.Euler(new Vector3()));
+
+            //print("synthesis position: " + (SynthesisJointsPos[2].Pos3D + originHipPosition).ToString());
 
             //設定IK hint position的方法
             avatarAnim.SetIKHintPositionWeight(AvatarIKHint.LeftKnee, 1.0f);

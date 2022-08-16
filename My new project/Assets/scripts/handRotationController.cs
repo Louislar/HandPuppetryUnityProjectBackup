@@ -127,15 +127,27 @@ public class handRotationController : MonoBehaviour
         // Read single mapping rotation result
         //rotationResult = jsonDeserializer.readAndParseRotation("jsonRotationData/handRotationAfterMapping/leftFrontKick.json");
         rotationResult = jsonDeserializer.readAndParseRotation(
-            "jsonRotationData/handRotationAfterMapping/leftFrontKickCombinations/leftFrontKick(True, False, True, False, False, False).json"
-            //"jsonRotationData/handRotationAfterMapping/leftFrontKickCombinations/leftFrontKick(True, False, True, True, True, True).json"
-            //"jsonRotationData/handRotationAfterMapping/leftFrontKickCombinations/leftFrontKick(True, True, True, True, True, True).json"
+            //"jsonRotationData/handRotationAfterMapping/leftFrontKickCombinations/leftFrontKick(True, False, True, False, False, False).json", 
+            //"jsonRotationData/handRotationAfterMapping/leftFrontKickCombinations/leftFrontKick(True, False, True, True, True, True).json", 
+            //"jsonRotationData/handRotationAfterMapping/leftFrontKickCombinations/leftFrontKick(True, False, False, False, True, True).json", 
+            //"jsonRotationData/handRotationAfterMapping/leftSideKickCombinations/leftSideKick(True, True, False, False, False, False).json",
+            //"jsonRotationData/handRotationAfterMapping/walkCrossoverCombinations/walkCrossover(True, True, True, False, True, True).json",
+            //"jsonRotationData/handRotationAfterMapping/runSprintCombinations/runSprint(False, False, False, True, True, True).json",
+            "jsonRotationData/handRotationAfterMapping/runSprintLinearMappingCombinations/runSprint(True, False, True, True, True, False).json",
+            //"jsonRotationData/handRotationRecord/leftFrontKickStream.json", 
+            //"jsonRotationData/handRotationRecord/leftFronKick.json", 
+            false, 
+            false
             );
 
         // Read multiple mapping rotation results
         List<string> boolPermutationStrings = boolPermutation(6);
         // string rootFileName = "jsonRotationData/handRotationAfterMapping/leftFrontKickCombinations/leftFrontKick";
-        string rootFileName = "jsonRotationData/handRotationAfterMapping/leftSideKickCombinations/leftSideKick";
+        //string rootFileName = "jsonRotationData/handRotationAfterMapping/leftSideKickCombinations/leftSideKick";
+        //string rootFileName = "jsonRotationData/handRotationAfterMapping/walkCrossoverCombinations/walkCrossover";
+        //string rootFileName = "jsonRotationData/handRotationAfterMapping/walkInjuredCombinations/walkInjured";
+        //string rootFileName = "jsonRotationData/handRotationAfterMapping/runSprintCombinations/runSprint";
+        string rootFileName = "jsonRotationData/handRotationAfterMapping/runSprintLinearMappingCombinations/runSprint";
         // generate所有true false組合的檔名，最後所有檔名再補上".json"
         multipleRotResultsFileNames = new List<string>();
         foreach (string str in boolPermutationStrings) multipleRotResultsFileNames.Add(rootFileName + str + ".json");

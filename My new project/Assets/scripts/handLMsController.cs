@@ -63,7 +63,7 @@ public class handLMsController : MonoBehaviour
     private List<MediaPipeHandLMs> recordedJointsRotation;
     public float recordLength;
     public int curLMTimeIndex;
-    // TODO: 能夠指定rotation錄製的開始與結束時間, 
+    // 能夠指定rotation錄製的開始與結束時間, 
     // 根據.json的資料點指定
     public bool useSpecificInterval;
     public int startRecordTimePoint;
@@ -170,7 +170,7 @@ public class handLMsController : MonoBehaviour
         Vector3 indexMCPNormal = jointBones[9].predict - jointBones[5].predict;   // vector from index mcp to middle mcp
         Vector3 palmNormal = Vector3.Cross(indexWristToMCP.normalized, indexMCPNormal.normalized);
         //Debug.DrawRay(jointBones[5].predict, palmNormal, Color.red);
-        //Debug.DrawRay(jointBones[5].predict, indexMCPNormal, Color.blue);
+        Debug.DrawRay(jointBones[5].predict, indexMCPNormal, Color.blue);
         // MCP rotation have two angles, one is along palm normal, another is along MCP normal(vector from middle to index)
         Vector3 projectToMCPNormal = Vector3.ProjectOnPlane(indexMCPToPIP, indexMCPNormal.normalized);
         Vector3 projectToPalmNormal = Vector3.ProjectOnPlane(indexMCPToPIP, palmNormal);
@@ -178,8 +178,8 @@ public class handLMsController : MonoBehaviour
         // 其實原本效果就很糟(abduction會歪向一邊，當我的食指是放鬆時)
         float indexMCPAngle1 = Vector3.SignedAngle(indexWristToMCP, projectToMCPNormal, indexMCPNormal);
         float indexMCPAngle2 = Vector3.SignedAngle(indexWristToMCP, projectToPalmNormal, palmNormal);
-        //Debug.DrawRay(jointBones[5].Pos3D, projectToMCPNormal, Color.black);
-        //Debug.DrawRay(jointBones[5].Pos3D, projectToMCPNormal, Color.yellow);
+        Debug.DrawRay(jointBones[5].predict, projectToMCPNormal, Color.black);
+        Debug.DrawRay(jointBones[0].predict, indexWristToMCP, Color.yellow);
         //print("index flexion: " + indexMCPAngle1.ToString());
         //print("abdcution: " + indexMCPAngle2.ToString());
 
@@ -349,7 +349,10 @@ public class handLMsController : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
         }
         jsonDeserializer jsonConverter = new jsonDeserializer();
-        jsonConverter.serializeAndOutputFile(new MediaPipeResult() { results = recordedJointsRotation.ToArray() }, "jsonRotationData/handRotationRecord/leftSideKick.json");
+        //jsonConverter.serializeAndOutputFile(new MediaPipeResult() { results = recordedJointsRotation.ToArray() }, "jsonRotationData/handRotationRecord/leftSideKick.json");
+        //jsonConverter.serializeAndOutputFile(new MediaPipeResult() { results = recordedJointsRotation.ToArray() }, "jsonRotationData/handRotationRecord/runSprint.json");
+        //jsonConverter.serializeAndOutputFile(new MediaPipeResult() { results = recordedJointsRotation.ToArray() }, "jsonRotationData/handRotationRecord/walkCrossover.json");
+        jsonConverter.serializeAndOutputFile(new MediaPipeResult() { results = recordedJointsRotation.ToArray() }, "jsonRotationData/handRotationRecord/walkInjured.json");
         yield return null;
     }
 
@@ -357,7 +360,11 @@ public class handLMsController : MonoBehaviour
     void Start()
     {
         init();
-        handLMs = jsonDeserializer.readAndParseRotation("jsonHandLMData/leftSideKick.json");
+        handLMs = jsonDeserializer.readAndParseRotation("jsonHandLMData/frontKick.json");
+        //handLMs = jsonDeserializer.readAndParseRotation("jsonHandLMData/leftSideKick.json");
+        //handLMs = jsonDeserializer.readAndParseRotation("jsonHandLMData/runSprint.json");
+        //handLMs = jsonDeserializer.readAndParseRotation("jsonHandLMData/walkCrossover.json");
+        //handLMs = jsonDeserializer.readAndParseRotation("jsonHandLMData/walkInjured.json");
         updateJointBoneLMs(handLMs.results[0]);
         updateJointBoneRenderOBs();
         StartCoroutine(updateLMOnce());
