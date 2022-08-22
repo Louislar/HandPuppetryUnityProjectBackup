@@ -115,10 +115,17 @@ public class positionApplyTest : MonoBehaviour
         jsonDeserializer jsonDeserializer = new jsonDeserializer();
         //readInHumanPositionFile = "jsonPositionData/afterSynthesis/leftSideKick_EWMA.json";
         //readInHumanPositionFile = "jsonPositionData/afterSynthesis/walkCrossover_EWMA.json";
-        //readInHumanPositionFile = "jsonPositionData/afterSynthesis/runSprint_EWMA.json";
-        readInHumanPositionFile = "jsonPositionData/afterSynthesis/runSprintLinearMapping_EWMA.json";
+        //readInHumanPositionFile = "jsonPositionData/afterSynthesis/runSprint_TFTTFT_EWMA.json";
+        //readInHumanPositionFile = "jsonPositionData/afterSynthesis/runSprintLinearMapping_TFTTFT_EWMA.json";
+        //readInHumanPositionFile = "jsonPositionData/afterSynthesis/runSprintStreamLinearMapping_EWMA.json";
+        //readInHumanPositionFile = "jsonPositionData/afterSynthesis/leftSideKick_TTTFFF_EWMA.json";
+        readInHumanPositionFile = "jsonPositionData/afterSynthesis/leftSideKick_generic_TTTFFF_EWMA.json";
+        //readInHumanPositionFile = "jsonPositionData/afterSynthesis/leftSideKickLinearMapping_TTTTTT_EWMA.json";
+        //readInHumanPositionFile = "jsonPositionData/afterSynthesis/leftSideKickLinearMapping_EWMA.json";
+        //readInHumanPositionFile = "jsonPositionData/afterSynthesis/leftSideKickStreamLinearMapping_EWMA.json";
         //readInHumanPositionFile = "jsonPositionData/afterSynthesis/leftFrontKick_EWMA.json";
         //readInHumanPositionFile = "jsonPositionData/afterSynthesis/leftFrontKick_stream_EWMA.json";
+        //readInHumanPositionFile = "jsonPositionData/afterSynthesis/leftFrontKickStreamLinearMapping_EWMA.json";
         readInHumanPositionResult = jsonDeserializer.readAndParseRotation(
             readInHumanPositionFile
         );

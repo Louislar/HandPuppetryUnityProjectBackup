@@ -13,6 +13,7 @@ public class handRotationController : MonoBehaviour
 
     // 多種mapping的rotation結果
     public bool isReadMultipleResultsFileNames;
+    public bool isSaveMultipleResultsFile;
     private List<string> multipleRotResultsFileNames;
     private List<MediaPipeResult> mappedRotResults;
     public string curVisualFileName;
@@ -60,6 +61,9 @@ public class handRotationController : MonoBehaviour
     /// 依序apply/播放多個mapped rotations到手上，
     /// 用於需要record多種mapping function的position結果，
     /// 避免需要錄製多種mapping functions時需要重複開始與結束
+    /// 新增: 控制開始錄製函數以及控制儲存錄製結果函數
+    /// singlePositionsRecorder() and saveRecordPos()
+    /// TODO: 測試新增"控制開始錄製函數以及控制儲存錄製結果函數"的結果如何
     /// </summary>
     /// <returns></returns>
     IEnumerator updateMultipleJointsRotationsSequential()
@@ -72,11 +76,19 @@ public class handRotationController : MonoBehaviour
                 ); //當前撥放的檔案名稱
             MediaPipeResult curRotationMappedResult = mappedRotResults[i];
             int curIndex = 0;
+            Coroutine tmpCo = null;
+            if (isSaveMultipleResultsFile)
+                tmpCo = StartCoroutine(avatarController.singlePositionsRecorder());
             while (curIndex < curRotationMappedResult.results.Length)
             {
                 updateJointRotations(curRotationMappedResult.results[curIndex]);
                 ++curIndex;
                 yield return new WaitForSeconds(0.05f);
+            }
+            if (isSaveMultipleResultsFile)
+            {
+                StopCoroutine(tmpCo);
+                avatarController.saveRecordPos(i);
             }
         }
         yield return null;
@@ -130,10 +142,13 @@ public class handRotationController : MonoBehaviour
             //"jsonRotationData/handRotationAfterMapping/leftFrontKickCombinations/leftFrontKick(True, False, True, False, False, False).json", 
             //"jsonRotationData/handRotationAfterMapping/leftFrontKickCombinations/leftFrontKick(True, False, True, True, True, True).json", 
             //"jsonRotationData/handRotationAfterMapping/leftFrontKickCombinations/leftFrontKick(True, False, False, False, True, True).json", 
+            //"jsonRotationData/handRotationAfterMapping/leftFrontKickStreamLinearMappingCombinations/leftFrontKick(True, True, False, True, True, True).json", 
             //"jsonRotationData/handRotationAfterMapping/leftSideKickCombinations/leftSideKick(True, True, False, False, False, False).json",
+            //"jsonRotationData/handRotationAfterMapping/leftSideKickLinearMappingCombinations/leftSideKick(True, True, False, False, False, False).json",
             //"jsonRotationData/handRotationAfterMapping/walkCrossoverCombinations/walkCrossover(True, True, True, False, True, True).json",
             //"jsonRotationData/handRotationAfterMapping/runSprintCombinations/runSprint(False, False, False, True, True, True).json",
-            "jsonRotationData/handRotationAfterMapping/runSprintLinearMappingCombinations/runSprint(True, False, True, True, True, False).json",
+            "jsonRotationData/handRotationAfterMapping/runSprintLinearMappingCombinations/runSprint(True, True, True, True, True, True).json",
+            //"jsonRotationData/handRotationAfterMapping/runSprintStreamTFTTTF.json",
             //"jsonRotationData/handRotationRecord/leftFrontKickStream.json", 
             //"jsonRotationData/handRotationRecord/leftFronKick.json", 
             false, 
@@ -142,22 +157,40 @@ public class handRotationController : MonoBehaviour
 
         // Read multiple mapping rotation results
         List<string> boolPermutationStrings = boolPermutation(6);
-        // string rootFileName = "jsonRotationData/handRotationAfterMapping/leftFrontKickCombinations/leftFrontKick";
+        //string rootFileName = "jsonRotationData/handRotationAfterMapping/leftFrontKickCombinations/leftFrontKick";
+        //string rootFileName = "jsonRotationData/handRotationAfterMapping/leftFrontKickStreamLinearMappingCombinations/leftFrontKick";
+        //string rootFileName = "jsonRotationData/handRotationAfterMapping/leftFrontKickLinearMappingCombinations/leftFrontKick";
         //string rootFileName = "jsonRotationData/handRotationAfterMapping/leftSideKickCombinations/leftSideKick";
+        string rootFileName = "jsonRotationData/handRotationAfterMapping/leftSideKickLinearMappingCombinations/leftSideKick";
+        //string rootFileName = "jsonRotationData/handRotationAfterMapping/leftSideKickStreamLinearMappingCombinations/leftSideKick";
         //string rootFileName = "jsonRotationData/handRotationAfterMapping/walkCrossoverCombinations/walkCrossover";
         //string rootFileName = "jsonRotationData/handRotationAfterMapping/walkInjuredCombinations/walkInjured";
         //string rootFileName = "jsonRotationData/handRotationAfterMapping/runSprintCombinations/runSprint";
-        string rootFileName = "jsonRotationData/handRotationAfterMapping/runSprintLinearMappingCombinations/runSprint";
+        //string rootFileName = "jsonRotationData/handRotationAfterMapping/runSprintLinearMappingCombinations/runSprint";
+        //string rootFileName = "jsonRotationData/handRotationAfterMapping/runSprintStreamLinearMapping2Combinations/runSprint";
+        //string rootFileName = "jsonRotationData/handRotationAfterMapping/runSprintStreamLinearMappingCombinations/runSprint";
         // generate所有true false組合的檔名，最後所有檔名再補上".json"
         multipleRotResultsFileNames = new List<string>();
         foreach (string str in boolPermutationStrings) multipleRotResultsFileNames.Add(rootFileName + str + ".json");
         // 測試用，先使用小數量的資料測試
-        //multipleRotResultsFileNames = new List<string>
-        //{
-        //    "jsonRotationData/handRotationAfterMapping/leftFrontKickCombinations/leftFrontKick(True, True, True, True, True, True).json", 
-        //    "jsonRotationData/handRotationAfterMapping/leftFrontKickCombinations/leftFrontKick(True, False, True, False, False, False).json",
-        //    "jsonRotationData/handRotationAfterMapping/leftFrontKickCombinations/leftFrontKick(True, False, True, True, True, True).json"
-        //};
+        multipleRotResultsFileNames = new List<string>
+        {
+            //"jsonRotationData/handRotationRecord/leftFrontKickStream.json", 
+            //"jsonRotationData/handRotationAfterMapping/leftFrontKickCombinations/leftFrontKick(True, False, True, False, False, False).json", 
+            //"jsonRotationData/handRotationAfterMapping/leftFrontKickLinearMappingCombinations/leftFrontKick(True, True, True, True, True, True).json",
+            //"jsonRotationData/handRotationAfterMapping/newLeftFrontKickCombinations/leftFrontKick(True, False, True, False, False, False).json"
+            //"jsonRotationData/handRotationAfterMapping/leftSideKickCombinations/leftSideKick(False, True, False, False, False, False).json",
+            //"jsonRotationData/handRotationAfterMapping/leftSideKickCombinations/leftSideKick(True, True, True, False, False, False).json",
+            //"jsonRotationData/handRotationAfterMapping/leftSideKickLinearMappingCombinations/leftSideKick(False, True, True, False, False, False).json",
+            //"jsonRotationData/handRotationAfterMapping/leftSideKickLinearMappingCombinations/leftSideKick(True, True, True, False, False, False).json",
+            //"jsonRotationData/handRotationAfterMapping/leftSideKickLinearMappingCombinations/leftSideKick(True, True, True, True, True, True).json",
+            //"jsonRotationData/handRotationAfterMapping/runSprintStreamLinearMappingCombinations/runSprint(True, True, True, True, True, True).json",
+            "jsonRotationData/handRotationAfterMapping/runSprintLinearMappingCombinations/runSprint(True, True, True, True, True, True).json",
+            "jsonRotationData/handRotationAfterMapping/runSprintLinearMappingCombinations/runSprint(True, False, True, True, False, True).json"
+            //"jsonRotationData/handRotationAfterMapping/runSprintCombinations/runSprint(True, True, True, True, True, True).json",
+            //"jsonRotationData/handRotationAfterMapping/runSprintCombinations/runSprint(True, False, True, True, False, True).json"
+
+        };
         // 測試用 end
         foreach (string str in multipleRotResultsFileNames)
         {

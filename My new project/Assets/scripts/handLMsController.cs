@@ -360,9 +360,9 @@ public class handLMsController : MonoBehaviour
     void Start()
     {
         init();
-        handLMs = jsonDeserializer.readAndParseRotation("jsonHandLMData/frontKick.json");
+        //handLMs = jsonDeserializer.readAndParseRotation("jsonHandLMData/frontKick.json");
         //handLMs = jsonDeserializer.readAndParseRotation("jsonHandLMData/leftSideKick.json");
-        //handLMs = jsonDeserializer.readAndParseRotation("jsonHandLMData/runSprint.json");
+        handLMs = jsonDeserializer.readAndParseRotation("jsonHandLMData/runSprint.json");
         //handLMs = jsonDeserializer.readAndParseRotation("jsonHandLMData/walkCrossover.json");
         //handLMs = jsonDeserializer.readAndParseRotation("jsonHandLMData/walkInjured.json");
         updateJointBoneLMs(handLMs.results[0]);
