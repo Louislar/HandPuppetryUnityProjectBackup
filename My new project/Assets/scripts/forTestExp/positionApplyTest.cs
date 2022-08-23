@@ -117,9 +117,12 @@ public class positionApplyTest : MonoBehaviour
         //readInHumanPositionFile = "jsonPositionData/afterSynthesis/walkCrossover_EWMA.json";
         //readInHumanPositionFile = "jsonPositionData/afterSynthesis/runSprint_TFTTFT_EWMA.json";
         //readInHumanPositionFile = "jsonPositionData/afterSynthesis/runSprintLinearMapping_TFTTFT_EWMA.json";
+        //readInHumanPositionFile = "jsonPositionData/afterSynthesis/runSprintLinearMapping_generic_TTTTTT_EWMA.json";
+        //readInHumanPositionFile = "jsonPositionData/afterSynthesis/runSprintLinearMapping_generic_allLeft_TTTTTT_EWMA.json";
         //readInHumanPositionFile = "jsonPositionData/afterSynthesis/runSprintStreamLinearMapping_EWMA.json";
         //readInHumanPositionFile = "jsonPositionData/afterSynthesis/leftSideKick_TTTFFF_EWMA.json";
         readInHumanPositionFile = "jsonPositionData/afterSynthesis/leftSideKick_generic_TTTFFF_EWMA.json";
+        //readInHumanPositionFile = "jsonPositionData/afterSynthesis/leftSideKickLinearMapping_generic_TTTFFF_EWMA.json";
         //readInHumanPositionFile = "jsonPositionData/afterSynthesis/leftSideKickLinearMapping_TTTTTT_EWMA.json";
         //readInHumanPositionFile = "jsonPositionData/afterSynthesis/leftSideKickLinearMapping_EWMA.json";
         //readInHumanPositionFile = "jsonPositionData/afterSynthesis/leftSideKickStreamLinearMapping_EWMA.json";

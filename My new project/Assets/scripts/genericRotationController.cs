@@ -82,7 +82,7 @@ public class genericRotationController : MonoBehaviour
             {
                 updateJointRotations(curRotationMappedResult.results[curIndex]);
                 ++curIndex;
-                yield return new WaitForSeconds(0.05f);
+                yield return new WaitForSeconds(0.03f);
             }
             if (isSaveMultipleResultsFile)
             {
@@ -142,7 +142,7 @@ public class genericRotationController : MonoBehaviour
         //string rootFileName = "jsonRotationData/handRotationAfterMapping/leftFrontKickStreamLinearMappingCombinations/leftFrontKick";
         //string rootFileName = "jsonRotationData/handRotationAfterMapping/leftFrontKickLinearMappingCombinations/leftFrontKick";
         //string rootFileName = "jsonRotationData/handRotationAfterMapping/leftSideKickCombinations/leftSideKick";
-        string rootFileName = "jsonRotationData/handRotationAfterMapping/leftSideKickLinearMappingCombinations/leftSideKick";
+        //string rootFileName = "jsonRotationData/handRotationAfterMapping/leftSideKickLinearMappingCombinations/leftSideKick";
         //string rootFileName = "jsonRotationData/handRotationAfterMapping/leftSideKickStreamLinearMappingCombinations/leftSideKick";
         //string rootFileName = "jsonRotationData/handRotationAfterMapping/walkCrossoverCombinations/walkCrossover";
         //string rootFileName = "jsonRotationData/handRotationAfterMapping/walkInjuredCombinations/walkInjured";
@@ -150,6 +150,7 @@ public class genericRotationController : MonoBehaviour
         //string rootFileName = "jsonRotationData/handRotationAfterMapping/runSprintLinearMappingCombinations/runSprint";
         //string rootFileName = "jsonRotationData/handRotationAfterMapping/runSprintStreamLinearMapping2Combinations/runSprint";
         //string rootFileName = "jsonRotationData/handRotationAfterMapping/runSprintStreamLinearMappingCombinations/runSprint";
+        string rootFileName = "jsonRotationData/handRotationAfterMapping/walkLinearMapping/walk";
         // generate所有true false組合的檔名，最後所有檔名再補上".json"
         multipleRotResultsFileNames = new List<string>();
         foreach (string str in boolPermutationStrings) multipleRotResultsFileNames.Add(rootFileName + str + ".json");
@@ -166,10 +167,11 @@ public class genericRotationController : MonoBehaviour
             //"jsonRotationData/handRotationAfterMapping/leftSideKickLinearMappingCombinations/leftSideKick(True, True, True, False, False, False).json",
             //"jsonRotationData/handRotationAfterMapping/leftSideKickLinearMappingCombinations/leftSideKick(True, True, True, True, True, True).json",
             //"jsonRotationData/handRotationAfterMapping/runSprintStreamLinearMappingCombinations/runSprint(True, True, True, True, True, True).json",
-            "jsonRotationData/handRotationAfterMapping/runSprintLinearMappingCombinations/runSprint(True, True, True, True, True, True).json",
-            "jsonRotationData/handRotationAfterMapping/runSprintLinearMappingCombinations/runSprint(True, False, True, True, False, True).json"
+            //"jsonRotationData/handRotationAfterMapping/runSprintLinearMappingCombinations/runSprint(True, True, True, True, True, True).json",
+            //"jsonRotationData/handRotationAfterMapping/runSprintLinearMappingCombinations/runSprint(True, False, True, True, False, True).json"
             //"jsonRotationData/handRotationAfterMapping/runSprintCombinations/runSprint(True, True, True, True, True, True).json",
             //"jsonRotationData/handRotationAfterMapping/runSprintCombinations/runSprint(True, False, True, True, False, True).json"
+            "jsonRotationData/handRotationAfterMapping/walkLinearMapping/walk(True, True, True, True, True, True).json"
 
         };
         // 測試用 end
@@ -187,7 +189,7 @@ public class genericRotationController : MonoBehaviour
         else
         {
             // Update single mapped rotation result
-            StartCoroutine(updateRotationOnce());
+            //StartCoroutine(updateRotationOnce());
         }
     }
 

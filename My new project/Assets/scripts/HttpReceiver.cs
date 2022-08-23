@@ -8,6 +8,7 @@ public class HttpReceiver : MonoBehaviour
     public bool serverOn;
     public bool updatePosToAvatar;
     public avatarController avatarController;
+    public positionApplyTest positionApplyTest;
     private jsonDeserializer jsonD;
 
     // Start is called before the first frame update
@@ -42,8 +43,9 @@ public class HttpReceiver : MonoBehaviour
                     );
 
                 // update position data to avatar
-                if(updatePosToAvatar)
-                    avatarController.updateSynthesisPositionOnce(handRotation.results[0]);
+                if (updatePosToAvatar)
+                    //avatarController.updateSynthesisPositionOnce(handRotation.results[0]);
+                    positionApplyTest.updateSynthesisPositionOnce(handRotation.results[0]);
 
                 // Or retrieve results as binary data
                 byte[] results = www.downloadHandler.data;
