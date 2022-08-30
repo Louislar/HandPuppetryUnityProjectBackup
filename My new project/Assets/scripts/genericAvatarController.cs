@@ -201,8 +201,9 @@ public class genericAvatarController : MonoBehaviour
                 //Path.Combine(Application.dataPath, "jsonPositionData/leftSideKickLinearMappingCombinations/" + fileName)
                 //Path.Combine(Application.dataPath, "jsonPositionData/leftSideKickStreamLinearMappingCombinations/" + fileName)
                 //Path.Combine(Application.dataPath, "jsonPositionData/leftFrontKickStreamLinearMappingCombinations/" + fileName)
+                Path.Combine(Application.dataPath, "jsonPositionData/leftFrontKickStreamLinearMapping/" + fileName)
                 //Path.Combine(Application.dataPath, "jsonPositionData/leftFrontKickLinearMappingCombinations/" + fileName)
-                Path.Combine(Application.dataPath, "jsonPositionData/walkLinearMappingCombinations/" + fileName)
+                //Path.Combine(Application.dataPath, "jsonPositionData/walkLinearMappingCombinations/" + fileName)
                 );
             // print(curHumanRotationFileNM);
         }

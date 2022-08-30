@@ -160,6 +160,9 @@ public class genericRotationController : MonoBehaviour
             //"jsonRotationData/handRotationRecord/leftFrontKickStream.json", 
             //"jsonRotationData/handRotationAfterMapping/leftFrontKickCombinations/leftFrontKick(True, False, True, False, False, False).json", 
             //"jsonRotationData/handRotationAfterMapping/leftFrontKickLinearMappingCombinations/leftFrontKick(True, True, True, True, True, True).json",
+            "jsonRotationData/handRotationAfterMapping/leftFrontKickStreamLinearMapping/leftFrontKick(True, True, True, True, True, True).json",
+            "jsonRotationData/handRotationAfterMapping/leftFrontKickStreamLinearMapping/leftFrontKick(True, False, False, False, True, True).json",
+            "jsonRotationData/handRotationAfterMapping/leftFrontKickStreamLinearMapping/leftFrontKick(True, False, False, True, True, True).json",
             //"jsonRotationData/handRotationAfterMapping/newLeftFrontKickCombinations/leftFrontKick(True, False, True, False, False, False).json"
             //"jsonRotationData/handRotationAfterMapping/leftSideKickCombinations/leftSideKick(False, True, False, False, False, False).json",
             //"jsonRotationData/handRotationAfterMapping/leftSideKickCombinations/leftSideKick(True, True, True, False, False, False).json",
@@ -171,7 +174,7 @@ public class genericRotationController : MonoBehaviour
             //"jsonRotationData/handRotationAfterMapping/runSprintLinearMappingCombinations/runSprint(True, False, True, True, False, True).json"
             //"jsonRotationData/handRotationAfterMapping/runSprintCombinations/runSprint(True, True, True, True, True, True).json",
             //"jsonRotationData/handRotationAfterMapping/runSprintCombinations/runSprint(True, False, True, True, False, True).json"
-            "jsonRotationData/handRotationAfterMapping/walkLinearMapping/walk(True, True, True, True, True, True).json"
+            //"jsonRotationData/handRotationAfterMapping/walkLinearMapping/walk(True, True, True, True, True, True).json"
 
         };
         // ´ú¸Õ¥Î end

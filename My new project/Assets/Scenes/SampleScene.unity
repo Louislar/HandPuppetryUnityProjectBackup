@@ -1786,7 +1786,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   genericAvatarController: {fileID: 5347028115448923255}
   updateRotationToAvatar: 0
-  isReadMultipleResultsFileNames: 1
+  isReadMultipleResultsFileNames: 0
   isSaveMultipleResultsFile: 0
   curVisualFileName: 
 --- !u!1 &699543428
@@ -8750,7 +8750,7 @@ MonoBehaviour:
   - {fileID: 348215549189618990}
   isApplyRotation: 0
   isSetHipTo0: 0
-  isSetAvatarToTPose: 1
+  isSetAvatarToTPose: 0
   isRecordHumanRotation: 0
   recordLength: 15
   isRecordHumanPosition: 0
