@@ -23,6 +23,7 @@ public class genericAvatarController : MonoBehaviour
     public List<GameObject> jointsGO;
     public bool isApplyRotation;
     public bool isSetHipTo0;
+    public bool isSetAvatarToTPose;
 
     [Header("Rotation recording settings")]
     public bool isRecordHumanRotation;
@@ -113,10 +114,11 @@ public class genericAvatarController : MonoBehaviour
             //"jsonPositionData/bodyMotionPosition/leftFrontKickPositionFullJointsWithHead.json"  // 輸出所有身體joints使用的檔名
             //"jsonPositionData/bodyMotionPosition/genericAvatar/leftSideKickPositionFullJointsWithHead.json"  // 輸出所有身體joints使用的檔名
             //"jsonPositionData/bodyMotionPosition/genericAvatar/leftSideKickPositionFullJointsWithHead_withHip.json"  // 輸出所有身體joints使用的檔名
-            "jsonPositionData/bodyMotionPosition/genericAvatar/runSprintPositionFullJointsWithHead0.5_withoutHip.json"  // 輸出所有身體joints使用的檔名
+            //"jsonPositionData/bodyMotionPosition/genericAvatar/runSprintPositionFullJointsWithHead0.5_withoutHip.json"  // 輸出所有身體joints使用的檔名
             //"jsonPositionData/bodyMotionPosition/genericAvatar/runSprintPositionFullJointsWithHead_withoutHip.json"  // 輸出所有身體joints使用的檔名
             //"jsonPositionData/bodyMotionPosition/genericAvatar/runSprintPositionFullJointsWithHead_withHip.json"  // 輸出所有身體joints使用的檔名
             //"jsonPositionData/bodyMotionPosition/TPose.json" // 輸出T-pose的position
+            "jsonPositionData/bodyMotionPosition/genericAvatar/TPose.json" // 輸出T-pose的position
             );
         yield return null;
     }
@@ -226,9 +228,28 @@ public class genericAvatarController : MonoBehaviour
         jointsGO[3].transform.localRotation = jointBones[2].rotation;
     }
 
+    /// <summary>
+    /// 這個函數沒有作用, 因為Hip的rotation, position, ...資訊沒有辦法後期做修改, 
+    /// Hip的資訊永遠都會被animation/animator的資訊所覆蓋(就算放到LateUpdata執行也一樣)
+    /// 想要將Hip rotation永遠歸0, 只能透過修改原始animation當中的資料(目前採用這種做法)
+    /// </summary>
     private void setHipRotTo0()
     {
         jointsGO[6].transform.localRotation = Quaternion.Euler(0, 0, 0);
+    }
+
+    /// <summary>
+    /// 將avatar的動作初始化成T pose的狀態, 
+    /// 等同將所有重要的joints的local rotation設為0
+    /// 需要注意, 若是希望Hip rotation為0, 則要挑選原本Hip就是 0的animation, 
+    /// 用於紀錄avatar T pose資訊, 提供python rotation to position計算使用
+    /// </summary>
+    private void initAvatarToTPose()
+    {
+        for(int i=0; i<jointsGO.Count;++i)
+        {
+            jointsGO[i].transform.localRotation = Quaternion.Euler(0, 0, 0);
+        }
     }
 
     // Start is called before the first frame update
@@ -259,5 +280,7 @@ public class genericAvatarController : MonoBehaviour
             setHipRotTo0();
         if (isApplyRotation)
             rotationApplyToAvatar();
+        if (isSetAvatarToTPose)
+            initAvatarToTPose();
     }
 }

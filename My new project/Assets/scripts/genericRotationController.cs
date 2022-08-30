@@ -82,7 +82,7 @@ public class genericRotationController : MonoBehaviour
             {
                 updateJointRotations(curRotationMappedResult.results[curIndex]);
                 ++curIndex;
-                yield return new WaitForSeconds(0.03f);
+                yield return new WaitForSeconds(0.05f);
             }
             if (isSaveMultipleResultsFile)
             {
