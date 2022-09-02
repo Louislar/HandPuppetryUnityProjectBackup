@@ -8128,12 +8128,12 @@ MonoBehaviour:
   kalmanParamQ: 0.1
   kalmanParamR: 0.1
   updateHandRotationsToAvatar: 0
-  isRecordRotation: 0
+  isRecordRotation: 1
   recordLength: 30
   curLMTimeIndex: 0
-  useSpecificInterval: 0
-  startRecordTimePoint: 1700
-  endRecordTimePoint: 2800
+  useSpecificInterval: 1
+  startRecordTimePoint: 2600
+  endRecordTimePoint: 3500
 --- !u!4 &4394381261187977586
 Transform:
   m_ObjectHideFlags: 0

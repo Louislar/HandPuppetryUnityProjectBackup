@@ -349,10 +349,10 @@ public class handLMsController : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
         }
         jsonDeserializer jsonConverter = new jsonDeserializer();
-        //jsonConverter.serializeAndOutputFile(new MediaPipeResult() { results = recordedJointsRotation.ToArray() }, "jsonRotationData/handRotationRecord/leftSideKick.json");
+        jsonConverter.serializeAndOutputFile(new MediaPipeResult() { results = recordedJointsRotation.ToArray() }, "jsonRotationData/handRotationRecord/leftSideKick.json");
         //jsonConverter.serializeAndOutputFile(new MediaPipeResult() { results = recordedJointsRotation.ToArray() }, "jsonRotationData/handRotationRecord/runSprint.json");
         //jsonConverter.serializeAndOutputFile(new MediaPipeResult() { results = recordedJointsRotation.ToArray() }, "jsonRotationData/handRotationRecord/walkCrossover.json");
-        jsonConverter.serializeAndOutputFile(new MediaPipeResult() { results = recordedJointsRotation.ToArray() }, "jsonRotationData/handRotationRecord/walkInjured.json");
+        //jsonConverter.serializeAndOutputFile(new MediaPipeResult() { results = recordedJointsRotation.ToArray() }, "jsonRotationData/handRotationRecord/walkInjured.json");
         yield return null;
     }
 
@@ -361,8 +361,8 @@ public class handLMsController : MonoBehaviour
     {
         init();
         //handLMs = jsonDeserializer.readAndParseRotation("jsonHandLMData/frontKick.json");
-        //handLMs = jsonDeserializer.readAndParseRotation("jsonHandLMData/leftSideKick.json");
-        handLMs = jsonDeserializer.readAndParseRotation("jsonHandLMData/runSprint.json");
+        handLMs = jsonDeserializer.readAndParseRotation("jsonHandLMData/leftSideKick.json");
+        //handLMs = jsonDeserializer.readAndParseRotation("jsonHandLMData/runSprint.json");
         //handLMs = jsonDeserializer.readAndParseRotation("jsonHandLMData/walkCrossover.json");
         //handLMs = jsonDeserializer.readAndParseRotation("jsonHandLMData/walkInjured.json");
         updateJointBoneLMs(handLMs.results[0]);
