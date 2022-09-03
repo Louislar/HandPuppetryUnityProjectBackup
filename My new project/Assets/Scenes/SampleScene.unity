@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.4508199, g: 0.50073934, b: 0.5746953, a: 1}
+  m_IndirectSpecularColor: {r: 0.45081925, g: 0.5007386, b: 0.5746936, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4058,8 +4058,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eaa8446fdcab2d4da1716bb8a972487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serverOn: 0
-  updatePosToAvatar: 0
+  serverOn: 1
+  updatePosToAvatar: 1
   avatarController: {fileID: 4849491650711544638}
   positionApplyTest: {fileID: 5190128481380481419}
 --- !u!4 &1897286309
