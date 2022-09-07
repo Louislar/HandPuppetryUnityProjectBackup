@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.45081925, g: 0.5007386, b: 0.5746936, a: 1}
+  m_IndirectSpecularColor: {r: 0.4508199, g: 0.50073934, b: 0.5746953, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4058,8 +4058,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eaa8446fdcab2d4da1716bb8a972487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serverOn: 1
-  updatePosToAvatar: 1
+  serverOn: 0
+  updatePosToAvatar: 0
   avatarController: {fileID: 4849491650711544638}
   positionApplyTest: {fileID: 5190128481380481419}
 --- !u!4 &1897286309
@@ -8128,10 +8128,10 @@ MonoBehaviour:
   kalmanParamQ: 0.1
   kalmanParamR: 0.1
   updateHandRotationsToAvatar: 0
-  isRecordRotation: 1
+  isRecordRotation: 0
   recordLength: 30
   curLMTimeIndex: 0
-  useSpecificInterval: 1
+  useSpecificInterval: 0
   startRecordTimePoint: 2600
   endRecordTimePoint: 3500
 --- !u!4 &4394381261187977586
@@ -8628,7 +8628,7 @@ MonoBehaviour:
   rigHintJoints: []
   curPosition: {x: 0, y: 0, z: 0}
   positionsIncreaseSpeed: 0
-  isReadSynthesisPositions: 0
+  isReadSynthesisPositions: 1
   isDirectApplySynthesisPositions: 0
   isApplySynthesisRotations: 1
   isApplyToRigJoints: 0
