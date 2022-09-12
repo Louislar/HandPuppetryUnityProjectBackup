@@ -120,17 +120,18 @@ public class positionApplyTest : MonoBehaviour
         //readInHumanPositionFile = "jsonPositionData/afterSynthesis/runSprintLinearMapping_generic_TTTTTT_EWMA.json";
         //readInHumanPositionFile = "jsonPositionData/afterSynthesis/runSprintLinearMapping_generic_allLeft_TTTTTT_EWMA.json";
         //readInHumanPositionFile = "jsonPositionData/afterSynthesis/runSprintStreamLinearMapping_EWMA.json";
+        //readInHumanPositionFile = "jsonPositionData/afterSynthesis/runSprintStreamLinearMapping_TFTTFT_EWMA.json";
         //readInHumanPositionFile = "jsonPositionData/afterSynthesis/leftSideKick_TTTFFF_EWMA.json";
         //readInHumanPositionFile = "jsonPositionData/afterSynthesis/leftSideKick_generic_TTTFFF_EWMA.json";
         //readInHumanPositionFile = "jsonPositionData/afterSynthesis/leftSideKickLinearMapping_generic_TTTFFF_EWMA.json";
         //readInHumanPositionFile = "jsonPositionData/afterSynthesis/leftSideKickLinearMapping_TTTTTT_EWMA.json";
         //readInHumanPositionFile = "jsonPositionData/afterSynthesis/leftSideKickLinearMapping_EWMA.json";
         //readInHumanPositionFile = "jsonPositionData/afterSynthesis/leftSideKickStreamLinearMapping_EWMA.json";
-        readInHumanPositionFile = "jsonPositionData/afterSynthesis/leftSideKickStreamLinearMapping_FTTFFF_EWMA.json";
+        //readInHumanPositionFile = "jsonPositionData/afterSynthesis/leftSideKickStreamLinearMapping_FTTFFF_EWMA.json";
         //readInHumanPositionFile = "jsonPositionData/afterSynthesis/leftFrontKick_EWMA.json";
         //readInHumanPositionFile = "jsonPositionData/afterSynthesis/leftFrontKick_stream_EWMA.json";
         //readInHumanPositionFile = "jsonPositionData/afterSynthesis/leftFrontKickStreamLinearMapping_EWMA.json";
-        //readInHumanPositionFile = "jsonPositionData/afterSynthesis/leftFrontKickStreamLinearMapping_TFFTTT_EWMA.json";
+        readInHumanPositionFile = "jsonPositionData/afterSynthesis/leftFrontKickStreamLinearMapping_TFFTTT_EWMA.json";
         readInHumanPositionResult = jsonDeserializer.readAndParseRotation(
             readInHumanPositionFile
         );

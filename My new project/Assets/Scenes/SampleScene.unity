@@ -8628,7 +8628,7 @@ MonoBehaviour:
   rigHintJoints: []
   curPosition: {x: 0, y: 0, z: 0}
   positionsIncreaseSpeed: 0
-  isReadSynthesisPositions: 1
+  isReadSynthesisPositions: 0
   isDirectApplySynthesisPositions: 0
   isApplySynthesisRotations: 1
   isApplyToRigJoints: 0
