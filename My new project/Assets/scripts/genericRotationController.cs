@@ -160,8 +160,8 @@ public class genericRotationController : MonoBehaviour
             //"jsonRotationData/handRotationRecord/leftFrontKickStream.json", 
             //"jsonRotationData/handRotationAfterMapping/leftFrontKickCombinations/leftFrontKick(True, False, True, False, False, False).json", 
             //"jsonRotationData/handRotationAfterMapping/leftFrontKickLinearMappingCombinations/leftFrontKick(True, True, True, True, True, True).json",
-            "jsonRotationData/handRotationAfterMapping/leftFrontKickStreamLinearMapping/leftFrontKick(True, True, True, True, True, True).json",
-            "jsonRotationData/handRotationAfterMapping/leftFrontKickStreamLinearMapping/leftFrontKick(True, False, False, False, True, True).json",
+            //"jsonRotationData/handRotationAfterMapping/leftFrontKickStreamLinearMapping/leftFrontKick(True, False, False, True, True, True).json",
+            //"jsonRotationData/handRotationAfterMapping/leftFrontKickStreamLinearMapping/leftFrontKick(True, False, False, False, True, True).json",
             "jsonRotationData/handRotationAfterMapping/leftFrontKickStreamLinearMapping/leftFrontKick(True, False, False, True, True, True).json",
             //"jsonRotationData/handRotationAfterMapping/newLeftFrontKickCombinations/leftFrontKick(True, False, True, False, False, False).json"
             //"jsonRotationData/handRotationAfterMapping/leftSideKickCombinations/leftSideKick(False, True, False, False, False, False).json",
@@ -169,7 +169,9 @@ public class genericRotationController : MonoBehaviour
             //"jsonRotationData/handRotationAfterMapping/leftSideKickLinearMappingCombinations/leftSideKick(False, True, True, False, False, False).json",
             //"jsonRotationData/handRotationAfterMapping/leftSideKickLinearMappingCombinations/leftSideKick(True, True, True, False, False, False).json",
             //"jsonRotationData/handRotationAfterMapping/leftSideKickLinearMappingCombinations/leftSideKick(True, True, True, True, True, True).json",
+            //"jsonRotationData/handRotationAfterMapping/leftSideKickStreamLinearMapping/leftSideKick(False, True, True, False, False, False).json",
             //"jsonRotationData/handRotationAfterMapping/runSprintStreamLinearMappingCombinations/runSprint(True, True, True, True, True, True).json",
+            //"jsonRotationData/handRotationAfterMapping/runSprintStreamLinearMapping/runSprint(True, False, True, True, False, True).json",
             //"jsonRotationData/handRotationAfterMapping/runSprintLinearMappingCombinations/runSprint(True, True, True, True, True, True).json",
             //"jsonRotationData/handRotationAfterMapping/runSprintLinearMappingCombinations/runSprint(True, False, True, True, False, True).json"
             //"jsonRotationData/handRotationAfterMapping/runSprintCombinations/runSprint(True, True, True, True, True, True).json",

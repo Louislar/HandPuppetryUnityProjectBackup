@@ -97,7 +97,7 @@ public class positionApplyTest : MonoBehaviour
         {
             updateSynthesisPositionOnce(readInHumanPositionResult.results[curIndex]);
             ++curIndex;
-            yield return new WaitForSeconds(0.03f);
+            yield return new WaitForSeconds(0.05f);
         }
         yield return null;
     }
@@ -131,7 +131,9 @@ public class positionApplyTest : MonoBehaviour
         //readInHumanPositionFile = "jsonPositionData/afterSynthesis/leftFrontKick_EWMA.json";
         //readInHumanPositionFile = "jsonPositionData/afterSynthesis/leftFrontKick_stream_EWMA.json";
         //readInHumanPositionFile = "jsonPositionData/afterSynthesis/leftFrontKickStreamLinearMapping_EWMA.json";
-        readInHumanPositionFile = "jsonPositionData/afterSynthesis/leftFrontKickStreamLinearMapping_TFFTTT_EWMA.json";
+        //readInHumanPositionFile = "jsonPositionData/afterSynthesis/leftFrontKickStreamLinearMapping_TFFTTT_EWMA.json";
+        readInHumanPositionFile = "jsonPositionData/afterSynthesis/leftFrontKickStreamLinearMapping_TFFTTT_075_EWMA.json";
+        //readInHumanPositionFile = "jsonPositionData/afterSynthesis/walkInjuredStreamLinearMapping_TFTTFT_EWMA.json";
         readInHumanPositionResult = jsonDeserializer.readAndParseRotation(
             readInHumanPositionFile
         );
