@@ -77,7 +77,8 @@ public class genericAvatarController : MonoBehaviour
         //jsonConverter.serializeAndOutputFile(new MediaPipeResult() { results = avatarRotationData.ToArray() }, "jsonRotationData/genericBodyDBRotation/runSprint0.5_withoutHip.json");
         //jsonConverter.serializeAndOutputFile(new MediaPipeResult() { results = avatarRotationData.ToArray() }, "jsonRotationData/genericBodyDBRotation/leftSideKick0.03_withHip.json");
         //jsonConverter.serializeAndOutputFile(new MediaPipeResult() { results = avatarRotationData.ToArray() }, "jsonRotationData/genericBodyDBRotation/runSprint0.03_withHip.json");
-        jsonConverter.serializeAndOutputFile(new MediaPipeResult() { results = avatarRotationData.ToArray() }, "jsonRotationData/genericBodyDBRotation/walkInjured0.03_withHip.json");
+        //jsonConverter.serializeAndOutputFile(new MediaPipeResult() { results = avatarRotationData.ToArray() }, "jsonRotationData/genericBodyDBRotation/walkInjured0.03_withHip.json");
+        jsonConverter.serializeAndOutputFile(new MediaPipeResult() { results = avatarRotationData.ToArray() }, "jsonRotationData/genericBodyDBRotation/hurdleJump0.03_075_withHip.json");
         yield return null;
     }
 
@@ -118,7 +119,7 @@ public class genericAvatarController : MonoBehaviour
             //"jsonPositionData/bodyMotionPosition/genericAvatar/leftFrontKickPositionFullJointsWithHead_withHip.json"  // 輸出所有身體joints使用的檔名
             //"jsonPositionData/bodyMotionPosition/genericAvatar/leftFrontKickPositionFullJointsWithHead_withoutHip.json"  // 輸出所有身體joints使用的檔名
             //"jsonPositionData/bodyMotionPosition/genericAvatar/leftFrontKickPositionFullJointsWithHead_withoutHip_075.json"  // 輸出所有身體joints使用的檔名
-            "jsonPositionData/bodyMotionPosition/genericAvatar/leftFrontKickPositionFullJointsWithHead_withHip_075.json"  // 輸出所有身體joints使用的檔名
+            //"jsonPositionData/bodyMotionPosition/genericAvatar/leftFrontKickPositionFullJointsWithHead_withHip_075.json"  // 輸出所有身體joints使用的檔名
             //"jsonPositionData/bodyMotionPosition/genericAvatar/leftSideKickPositionFullJointsWithHead_withoutHip.json"  // 輸出所有身體joints使用的檔名
             //"jsonPositionData/bodyMotionPosition/genericAvatar/leftSideKickPositionFullJointsWithHead_withHip.json"  // 輸出所有身體joints使用的檔名
             //"jsonPositionData/bodyMotionPosition/genericAvatar/runSprintPositionFullJointsWithHead0.5_withoutHip.json"  // 輸出所有身體joints使用的檔名
@@ -126,6 +127,8 @@ public class genericAvatarController : MonoBehaviour
             //"jsonPositionData/bodyMotionPosition/genericAvatar/runSprintPositionFullJointsWithHead_withHip.json"  // 輸出所有身體joints使用的檔名
             //"jsonPositionData/bodyMotionPosition/genericAvatar/walkInjuredPositionFullJointsWithHead_withHip.json"  // 輸出所有身體joints使用的檔名
             //"jsonPositionData/bodyMotionPosition/genericAvatar/walkInjuredPositionFullJointsWithHead_withoutHip.json"  // 輸出所有身體joints使用的檔名
+            //"jsonPositionData/bodyMotionPosition/genericAvatar/hurdleJumpPositionFullJointsWithHead_withHip_075.json"  // 輸出所有身體joints使用的檔名
+            "jsonPositionData/bodyMotionPosition/genericAvatar/hurdleJumpPositionFullJointsWithHead_withoutHip_075.json"  // 輸出所有身體joints使用的檔名
             //"jsonPositionData/bodyMotionPosition/TPose.json" // 輸出T-pose的position
             //"jsonPositionData/bodyMotionPosition/genericAvatar/TPose.json" // 輸出T-pose的position
             );
