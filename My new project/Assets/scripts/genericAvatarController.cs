@@ -27,8 +27,10 @@ public class genericAvatarController : MonoBehaviour
 
     [Header("Rotation recording settings")]
     public bool isRecordHumanRotation;
+    public bool isRecordQuaternionRotation;
     public float recordLength;
     private List<MediaPipeHandLMs> avatarRotationData;
+    private List<QuatRotations> avatarQuatData;
 
     [Header("Position recording settings")]
     public bool isRecordHumanPosition;
@@ -77,7 +79,42 @@ public class genericAvatarController : MonoBehaviour
         //jsonConverter.serializeAndOutputFile(new MediaPipeResult() { results = avatarRotationData.ToArray() }, "jsonRotationData/genericBodyDBRotation/runSprint0.5_withoutHip.json");
         //jsonConverter.serializeAndOutputFile(new MediaPipeResult() { results = avatarRotationData.ToArray() }, "jsonRotationData/genericBodyDBRotation/leftSideKick0.03_withHip.json");
         //jsonConverter.serializeAndOutputFile(new MediaPipeResult() { results = avatarRotationData.ToArray() }, "jsonRotationData/genericBodyDBRotation/runSprint0.03_withHip.json");
-        jsonConverter.serializeAndOutputFile(new MediaPipeResult() { results = avatarRotationData.ToArray() }, "jsonRotationData/genericBodyDBRotation/walkInjured0.03_withHip.json");
+        //jsonConverter.serializeAndOutputFile(new MediaPipeResult() { results = avatarRotationData.ToArray() }, "jsonRotationData/genericBodyDBRotation/walkInjured0.03_withHip.json");
+        jsonConverter.serializeAndOutputFile(new MediaPipeResult() { results = avatarRotationData.ToArray() }, "jsonRotationData/genericBodyDBRotation/leftFrontKick0.03_withoutHip.json");
+        yield return null;
+    }
+
+    public IEnumerator QuatRecorder()
+    {
+        float recordTimeElapse = 0;
+        List<int> recoredJoints = new List<int>()
+        {
+            0, 1, 3, 4
+        };
+        avatarQuatData = new List<QuatRotations>();
+        while (recordTimeElapse < recordLength)
+        {
+            List<QuatPoint> tmpDataPonts = new List<QuatPoint>();
+            foreach (int _aBonIdx in recoredJoints)
+            {
+                tmpDataPonts.Add(new QuatPoint()
+                {
+                    x = jointsGO[_aBonIdx].transform.localRotation.x,
+                    y = jointsGO[_aBonIdx].transform.localRotation.y,
+                    z = jointsGO[_aBonIdx].transform.localRotation.z,
+                    w = jointsGO[_aBonIdx].transform.localRotation.w
+                });
+            }
+            avatarQuatData.Add(new QuatRotations()
+            {
+                time = recordTimeElapse,
+                data = tmpDataPonts
+            });
+            recordTimeElapse += 0.03f;
+            yield return new WaitForSeconds(0.03f);
+        }
+        jsonDeserializer jsonConverter = new jsonDeserializer();
+        jsonConverter.serializeAndOutputFile(new QuatResult() { results = avatarQuatData.ToArray() }, "jsonRotationData/genericBodyDBRotation/quaternion/leftFrontKick0.03_075_withHip.json");
         yield return null;
     }
 
@@ -118,13 +155,16 @@ public class genericAvatarController : MonoBehaviour
             //"jsonPositionData/bodyMotionPosition/genericAvatar/leftFrontKickPositionFullJointsWithHead_withHip.json"  // 輸出所有身體joints使用的檔名
             //"jsonPositionData/bodyMotionPosition/genericAvatar/leftFrontKickPositionFullJointsWithHead_withoutHip.json"  // 輸出所有身體joints使用的檔名
             //"jsonPositionData/bodyMotionPosition/genericAvatar/leftFrontKickPositionFullJointsWithHead_withoutHip_075.json"  // 輸出所有身體joints使用的檔名
-            "jsonPositionData/bodyMotionPosition/genericAvatar/leftFrontKickPositionFullJointsWithHead_withHip_075.json"  // 輸出所有身體joints使用的檔名
+            //"jsonPositionData/bodyMotionPosition/genericAvatar/leftFrontKickPositionFullJointsWithHead_withHip_075.json"  // 輸出所有身體joints使用的檔名
             //"jsonPositionData/bodyMotionPosition/genericAvatar/leftSideKickPositionFullJointsWithHead_withoutHip.json"  // 輸出所有身體joints使用的檔名
             //"jsonPositionData/bodyMotionPosition/genericAvatar/leftSideKickPositionFullJointsWithHead_withHip.json"  // 輸出所有身體joints使用的檔名
             //"jsonPositionData/bodyMotionPosition/genericAvatar/runSprintPositionFullJointsWithHead0.5_withoutHip.json"  // 輸出所有身體joints使用的檔名
             //"jsonPositionData/bodyMotionPosition/genericAvatar/runSprintPositionFullJointsWithHead_withoutHip.json"  // 輸出所有身體joints使用的檔名
             //"jsonPositionData/bodyMotionPosition/genericAvatar/runSprintPositionFullJointsWithHead_withHip.json"  // 輸出所有身體joints使用的檔名
+            //"jsonPositionData/bodyMotionPosition/genericAvatar/runSprintPositionFullJointsWithHead_withoutHip_05.json"  // 輸出所有身體joints使用的檔名
+            //"jsonPositionData/bodyMotionPosition/genericAvatar/runSprintPositionFullJointsWithHead_withHip_05.json"  // 輸出所有身體joints使用的檔名
             //"jsonPositionData/bodyMotionPosition/genericAvatar/walkInjuredPositionFullJointsWithHead_withHip.json"  // 輸出所有身體joints使用的檔名
+            "jsonPositionData/bodyMotionPosition/genericAvatar/walkInjuredPositionFullJointsWithHead_withHip_075.json"  // 輸出所有身體joints使用的檔名
             //"jsonPositionData/bodyMotionPosition/genericAvatar/walkInjuredPositionFullJointsWithHead_withoutHip.json"  // 輸出所有身體joints使用的檔名
             //"jsonPositionData/bodyMotionPosition/TPose.json" // 輸出T-pose的position
             //"jsonPositionData/bodyMotionPosition/genericAvatar/TPose.json" // 輸出T-pose的position
@@ -272,7 +312,11 @@ public class genericAvatarController : MonoBehaviour
         {
             StartCoroutine(rotationRecorder());
         }
-        if(isRecordHumanPosition)
+        if (isRecordQuaternionRotation)
+        {
+            StartCoroutine(QuatRecorder());
+        }
+        if (isRecordHumanPosition)
         {
             StartCoroutine(positionRecorder());
         }

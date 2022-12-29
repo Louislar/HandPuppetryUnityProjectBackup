@@ -23,6 +23,26 @@ public class LMDataPoint
     public float z;
 }
 
+[Serializable]
+public class QuatResult
+{
+    public QuatRotations[] results;
+}
+[Serializable]
+public class QuatRotations
+{
+    public double time;
+    public List<QuatPoint> data;
+}
+[Serializable]
+public class QuatPoint
+{
+    public float x;
+    public float y;
+    public float z;
+    public float w;
+}
+
 public class jsonDeserializer : MonoBehaviour
 {
     
@@ -48,6 +68,15 @@ public class jsonDeserializer : MonoBehaviour
     }
 
     public void serializeAndOutputFile(MediaPipeResult timeData, string fileName)
+    {
+        string jsonString = JsonUtility.ToJson(timeData);
+        print(jsonString);
+        StreamWriter file = new StreamWriter(System.IO.Path.Combine(Application.dataPath, fileName));
+        file.Write(jsonString);
+        file.Close();
+        print("Record rotation and output complete");
+    }
+    public void serializeAndOutputFile(QuatResult timeData, string fileName)
     {
         string jsonString = JsonUtility.ToJson(timeData);
         print(jsonString);
