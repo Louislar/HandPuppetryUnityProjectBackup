@@ -114,7 +114,12 @@ public class genericAvatarController : MonoBehaviour
             yield return new WaitForSeconds(0.03f);
         }
         jsonDeserializer jsonConverter = new jsonDeserializer();
-        jsonConverter.serializeAndOutputFile(new QuatResult() { results = avatarQuatData.ToArray() }, "jsonRotationData/genericBodyDBRotation/quaternion/leftFrontKick0.03_075_withHip.json");
+        // jsonConverter.serializeAndOutputFile(new QuatResult() { results = avatarQuatData.ToArray() }, "jsonRotationData/genericBodyDBRotation/quaternion/leftFrontKick0.03_075_withHip.json");
+        //jsonConverter.serializeAndOutputFile(new QuatResult() { results = avatarQuatData.ToArray() }, "jsonRotationData/genericBodyDBRotation/quaternion/leftSideKick0.03_075_withHip.json");
+        //jsonConverter.serializeAndOutputFile(new QuatResult() { results = avatarQuatData.ToArray() }, "jsonRotationData/genericBodyDBRotation/quaternion/runSprint0.03_05_withHip.json");
+        //jsonConverter.serializeAndOutputFile(new QuatResult() { results = avatarQuatData.ToArray() }, "jsonRotationData/genericBodyDBRotation/quaternion/runInjured0.03_05_withHip.json");
+        //jsonConverter.serializeAndOutputFile(new QuatResult() { results = avatarQuatData.ToArray() }, "jsonRotationData/genericBodyDBRotation/quaternion/jumpJoy0.03_05_withHip_withHip.json");
+        jsonConverter.serializeAndOutputFile(new QuatResult() { results = avatarQuatData.ToArray() }, "jsonRotationData/genericBodyDBRotation/quaternion/twoLegJump0.03_05_withHip_withHip.json");
         yield return null;
     }
 
@@ -164,8 +169,12 @@ public class genericAvatarController : MonoBehaviour
             //"jsonPositionData/bodyMotionPosition/genericAvatar/runSprintPositionFullJointsWithHead_withoutHip_05.json"  // 輸出所有身體joints使用的檔名
             //"jsonPositionData/bodyMotionPosition/genericAvatar/runSprintPositionFullJointsWithHead_withHip_05.json"  // 輸出所有身體joints使用的檔名
             //"jsonPositionData/bodyMotionPosition/genericAvatar/walkInjuredPositionFullJointsWithHead_withHip.json"  // 輸出所有身體joints使用的檔名
-            "jsonPositionData/bodyMotionPosition/genericAvatar/walkInjuredPositionFullJointsWithHead_withHip_075.json"  // 輸出所有身體joints使用的檔名
-            //"jsonPositionData/bodyMotionPosition/genericAvatar/walkInjuredPositionFullJointsWithHead_withoutHip.json"  // 輸出所有身體joints使用的檔名
+            //"jsonPositionData/bodyMotionPosition/genericAvatar/walkInjuredPositionFullJointsWithHead_withHip_075.json"  // 輸出所有身體joints使用的檔名
+            //"jsonPositionData/bodyMotionPosition/genericAvatar/walkInjuredPositionFullJointsWithHead_withoutHip_075.json"  // 輸出所有身體joints使用的檔名
+            //"jsonPositionData/bodyMotionPosition/genericAvatar/jumpJoyPositionFullJointsWithHead_withoutHip_075.json"  // 輸出所有身體joints使用的檔名
+            //"jsonPositionData/bodyMotionPosition/genericAvatar/jumpJoyPositionFullJointsWithHead_withHip_075.json"  // 輸出所有身體joints使用的檔名
+            "jsonPositionData/bodyMotionPosition/genericAvatar/twoLegJumpPositionFullJointsWithHead_withHip_075.json"  // 輸出所有身體joints使用的檔名
+            //"jsonPositionData/bodyMotionPosition/genericAvatar/twoLegJumpPositionFullJointsWithHead_withoutHip_075.json"  // 輸出所有身體joints使用的檔名
             //"jsonPositionData/bodyMotionPosition/TPose.json" // 輸出T-pose的position
             //"jsonPositionData/bodyMotionPosition/genericAvatar/TPose.json" // 輸出T-pose的position
             );
