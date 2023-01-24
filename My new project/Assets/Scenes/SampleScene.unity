@@ -4062,6 +4062,7 @@ MonoBehaviour:
   updatePosToAvatar: 0
   avatarController: {fileID: 4849491650711544638}
   positionApplyTest: {fileID: 5190128481380481419}
+  accessURLs: []
 --- !u!4 &1897286309
 Transform:
   m_ObjectHideFlags: 0

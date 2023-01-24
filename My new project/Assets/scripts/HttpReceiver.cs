@@ -7,14 +7,18 @@ public class HttpReceiver : MonoBehaviour
 {
     public bool serverOn;
     public bool updatePosToAvatar;
+    public bool updateWristPosToAvatarRootPos;
     public avatarController avatarController;
     public positionApplyTest positionApplyTest;
+    public List<string> accessURLs;
     private jsonDeserializer jsonD;
 
     // Start is called before the first frame update
     void Start()
     {
-        if(serverOn)
+        // 不斷交替對不同url發出請求 
+        accessURLs = new List<string> { "localhost:8080", "localhost:8080/wrist" };
+        if (serverOn)
         {
             StartCoroutine(ReceiveTextFromHttpServer());
             jsonD = new jsonDeserializer();
@@ -23,9 +27,10 @@ public class HttpReceiver : MonoBehaviour
 
     IEnumerator ReceiveTextFromHttpServer()
     {
+        int urlIndex = 0;
         while (true)
         {
-            UnityWebRequest www = UnityWebRequest.Get("localhost:8080");
+            UnityWebRequest www = UnityWebRequest.Get(accessURLs[urlIndex]);
             yield return www.SendWebRequest();
 
             if (www.result != UnityWebRequest.Result.Success)
@@ -43,9 +48,18 @@ public class HttpReceiver : MonoBehaviour
                     );
 
                 // update position data to avatar
-                if (updatePosToAvatar)
+                if (updatePosToAvatar & urlIndex==0)
                     //avatarController.updateSynthesisPositionOnce(handRotation.results[0]);
                     positionApplyTest.updateSynthesisPositionOnce(handRotation.results[0]);
+                else if(updateWristPosToAvatarRootPos & urlIndex == 1)
+                {
+                    // TODO: update wrist position to avatar root positions
+                    positionApplyTest.updateRootPositionOnce(handRotation.results[0]);
+                }
+
+                // update URL index for switching between body pose and hand pose 
+                urlIndex++;
+                urlIndex = urlIndex % accessURLs.Count;
 
                 // Or retrieve results as binary data
                 byte[] results = www.downloadHandler.data;

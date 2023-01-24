@@ -13,12 +13,33 @@ public class positionApplyTest : MonoBehaviour
     public bool isDirectApplySynthesisPositions;
     public bool isApplySynthesisRotations;
     public bool isApplyToRigJoints;
+    public bool isApplyWristToRootPosition;
+    public Vector3 wristRootPosScale;
     public string readInHumanPositionFile;
     public Vector3 originHipPosition;
     public Vector3 correctOrigin;
     public int readPositionsJointsNum;
     private MediaPipeResult readInHumanPositionResult;
     private handLMsController.JointBone[] SynthesisJointsPos;
+    private Vector3 originalRootPos;
+
+    /// <summary>
+    /// TODO: 利用估計的手部landmarks更改avatar的root position (注意, 不是hip position) 
+    /// 使用joint of wrist 更新avatar的root position 
+    /// 要配合scale係數縮放wrist的position數值, 因為它的數值範圍是[0, 1] 
+    /// </summary>
+    /// <param name="handLandmarks"></param>
+    public void updateRootPositionOnce(MediaPipeHandLMs handLandmarks)
+    {
+        if (isApplyWristToRootPosition)
+        {
+            this.transform.localPosition = new Vector3(
+                originalRootPos.x + handLandmarks.data[0].x * wristRootPosScale.x,
+                originalRootPos.y + handLandmarks.data[0].y * wristRootPosScale.y,
+                this.transform.localPosition.z
+                );
+        }
+    }
 
     /// <summary>
     /// TODO: 計算各個joints的rotation, 理論上只需要計算雙手與雙腳的各兩個joint的旋轉即可
@@ -102,11 +123,15 @@ public class positionApplyTest : MonoBehaviour
         yield return null;
     }
 
+       
     // Start is called before the first frame update
     void Start()
     {
         curPosition = new Vector3();
         curPosition = controllJoints[2].transform.localPosition;
+
+        originalRootPos = new Vector3();
+        originalRootPos = transform.localPosition;
 
         // init positions array
         SynthesisJointsPos = new handLMsController.JointBone[readPositionsJointsNum];
