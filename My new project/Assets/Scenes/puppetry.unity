@@ -927,7 +927,7 @@ MonoBehaviour:
   isApplySynthesisRotations: 1
   isApplyToRigJoints: 0
   isApplyWristToRootPosition: 1
-  wristRootPosScale: {x: 3, y: 1, z: 1}
+  wristRootPosScale: {x: -10, y: -5, z: 1}
   readInHumanPositionFile: 
   originHipPosition: {x: 1.9927852, y: 0.97411835, z: 2.233169}
   correctOrigin: {x: 0, y: 0, z: 0}
@@ -947,10 +947,9 @@ Transform:
   - {fileID: 7425820684787765377}
   - {fileID: 9031998827468511330}
   - {fileID: 1610892327550402720}
-  - {fileID: 9206738653053779901}
   - {fileID: 7349109669385510986}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2023183163826510184
 Transform:
@@ -2860,7 +2859,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1998760145842995231}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &7376432786937724063
 Transform:
@@ -3621,11 +3620,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2080329515256574360}
-  m_LocalRotation: {x: 0.053962335, y: 0.97882897, z: -0.07767605, w: 0.1815171}
-  m_LocalPosition: {x: -4.2, y: 2.04, z: 8.05}
-  m_LocalScale: {x: 100, y: 100.00001, z: 99.99999}
+  m_LocalRotation: {x: 0.0075961384, y: 0.99240386, z: -0.08682413, w: 0.086824216}
+  m_LocalPosition: {x: 2.92, y: 2.448, z: 15.21}
+  m_LocalScale: {x: 100.00002, y: 100, z: 100.00004}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1998760145842995231}
+  m_Father: {fileID: 0}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 9.884, y: 159.379, z: 4.509}
+  m_LocalEulerAnglesHint: {x: 10, y: 170, z: 0}
