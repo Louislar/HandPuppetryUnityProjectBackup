@@ -921,7 +921,8 @@ MonoBehaviour:
   - {fileID: 759062229126344641}
   rigHintJoints: []
   curPosition: {x: 0, y: 0, z: 0}
-  positionsIncreaseSpeed: 0
+  applyRotationOfAvatarAlongY: 1
+  rotationOfAvatarInY: 0
   isReadSynthesisPositions: 0
   isDirectApplySynthesisPositions: 0
   isApplySynthesisRotations: 1

@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class positionApplyTest : MonoBehaviour
 {
+    public enum Rotation90
+    {
+        front = 0, 
+        faceLeft = 90, 
+        faceRight = -90, 
+        back = 180
+    }
+
     public List<GameObject> controllJoints; // Fill this list in the Unity inspector
     public List<GameObject> rigHintJoints;
     public Vector3 curPosition;
-    public float positionsIncreaseSpeed;
+    public bool applyRotationOfAvatarAlongY;
+    public Rotation90 rotationOfAvatarInY;
+
     [Header("Position read/apply in settings")]
     public bool isReadSynthesisPositions;
     public bool isDirectApplySynthesisPositions;
     public bool isApplySynthesisRotations;
     public bool isApplyToRigJoints;
+    [Header("Wrist position read/apply in settings")]
     public bool isApplyWristToRootPosition;
     public Vector3 wristRootPosScale;
     public string readInHumanPositionFile;
@@ -24,7 +35,17 @@ public class positionApplyTest : MonoBehaviour
     private Vector3 originalRootPos;
 
     /// <summary>
-    /// TODO: 利用估計的手部landmarks更改avatar的root position (注意, 不是hip position) 
+    /// 透過修改hip rotation達到旋轉整個avatar的目的
+    /// </summary>
+    /// <param name="rot"></param>
+    public void rotateAvatarAlongY(Rotation90 rot)
+    {
+        //this.transform.rotation = Quaternion.Euler(0, (int) rot, 0);
+        controllJoints[6].transform.Rotate(new Vector3(0, (int)rot, 0));
+    }
+
+    /// <summary>
+    /// 利用估計的手部landmarks更改avatar的root position (注意, 不是hip position) 
     /// 使用joint of wrist 更新avatar的root position 
     /// 要配合scale係數縮放wrist的position數值, 因為它的數值範圍是[0, 1] 
     /// </summary>
@@ -42,7 +63,7 @@ public class positionApplyTest : MonoBehaviour
     }
 
     /// <summary>
-    /// TODO: 計算各個joints的rotation, 理論上只需要計算雙手與雙腳的各兩個joint的旋轉即可
+    /// 計算各個joints的rotation, 理論上只需要計算雙手與雙腳的各兩個joint的旋轉即可
     ///         目前計算結果apply到avatar身上，還是與直接apply position有一些落差
     /// </summary>
     public void computeRigJointsRotAndApply()
@@ -191,5 +212,7 @@ public class positionApplyTest : MonoBehaviour
         // 旋轉後position又會再變動, 所以旋轉與position變動只能擇一apply到avatar身上
         if (isApplySynthesisRotations)
             computeRigJointsRotAndApply();
+        if (applyRotationOfAvatarAlongY)
+            rotateAvatarAlongY(rotationOfAvatarInY);
     }
 }
