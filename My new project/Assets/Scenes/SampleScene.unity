@@ -3458,11 +3458,14 @@ MonoBehaviour:
   - {fileID: 976341036}
   - {fileID: 116949508}
   curPosition: {x: 0, y: 0, z: 0}
-  positionsIncreaseSpeed: 0
+  applyRotationOfAvatarAlongY: 0
+  rotationOfAvatarInY: 0
   isReadSynthesisPositions: 1
   isDirectApplySynthesisPositions: 0
   isApplySynthesisRotations: 1
   isApplyToRigJoints: 0
+  isApplyWristToRootPosition: 0
+  wristRootPosScale: {x: 0, y: 0, z: 0}
   readInHumanPositionFile: 
   originHipPosition: {x: 1.9927852, y: 0.97411835, z: 2.233169}
   correctOrigin: {x: -2, y: 0, z: -2}
@@ -4060,6 +4063,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverOn: 0
   updatePosToAvatar: 0
+  updateWristPosToAvatarRootPos: 0
   avatarController: {fileID: 4849491650711544638}
   positionApplyTest: {fileID: 5190128481380481419}
   accessURLs: []
@@ -8628,11 +8632,14 @@ MonoBehaviour:
   - {fileID: 6427398126532941396}
   rigHintJoints: []
   curPosition: {x: 0, y: 0, z: 0}
-  positionsIncreaseSpeed: 0
+  applyRotationOfAvatarAlongY: 0
+  rotationOfAvatarInY: 0
   isReadSynthesisPositions: 0
   isDirectApplySynthesisPositions: 0
   isApplySynthesisRotations: 1
   isApplyToRigJoints: 0
+  isApplyWristToRootPosition: 0
+  wristRootPosScale: {x: 0, y: 0, z: 0}
   readInHumanPositionFile: 
   originHipPosition: {x: 1.9927852, y: 0.97411835, z: 2.233169}
   correctOrigin: {x: 0, y: 0, z: 0}

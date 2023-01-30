@@ -922,7 +922,7 @@ MonoBehaviour:
   rigHintJoints: []
   curPosition: {x: 0, y: 0, z: 0}
   applyRotationOfAvatarAlongY: 1
-  rotationOfAvatarInY: 0
+  rotationOfAvatarInY: -90
   isReadSynthesisPositions: 0
   isDirectApplySynthesisPositions: 0
   isApplySynthesisRotations: 1
