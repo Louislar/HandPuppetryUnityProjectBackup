@@ -17,6 +17,7 @@ public class positionApplyTest : MonoBehaviour
     public Vector3 curPosition;
     public bool applyRotationOfAvatarAlongY;
     public Rotation90 rotationOfAvatarInY;
+    public Transform avatarRootOB;
 
     [Header("Position read/apply in settings")]
     public bool isReadSynthesisPositions;
@@ -41,7 +42,10 @@ public class positionApplyTest : MonoBehaviour
     public void rotateAvatarAlongY(Rotation90 rot)
     {
         //this.transform.rotation = Quaternion.Euler(0, (int) rot, 0);
-        controllJoints[6].transform.Rotate(new Vector3(0, (int)rot, 0));
+        //controllJoints[6].transform.Rotate(new Vector3(0, (int)rot, 0));
+        controllJoints[6].transform.Rotate(0, (int)rot, 0, Space.World);
+
+        //avatarRootOB.rotation = Quaternion.Euler(0, (int)rot, 0);
     }
 
     /// <summary>
@@ -70,14 +74,26 @@ public class positionApplyTest : MonoBehaviour
     {
         Debug.DrawRay(originHipPosition + correctOrigin, SynthesisJointsPos[0].Pos3D, Color.green);
         // Hip
-        //controllJoints[6].transform.rotation =
-        //    Quaternion.FromToRotation(new Vector3(-0.08207779f, -0.06751716f, -0.01599556f), SynthesisJointsPos[0].Pos3D);
+        controllJoints[6].transform.rotation =
+            Quaternion.FromToRotation(new Vector3(-0.08207779f, -0.06751716f, -0.01599556f), SynthesisJointsPos[0].Pos3D);
+        //Quaternion hipGlobalRot = Quaternion.FromToRotation(new Vector3(0, 1, 0), SynthesisJointsPos[7].Pos3D - SynthesisJointsPos[6].Pos3D);
+        //controllJoints[6].transform.localRotation = hipGlobalRot;
+        // Spine 
+        //controllJoints[7].transform.rotation =
+        //    Quaternion.FromToRotation(new Vector3(0, 1, 0), SynthesisJointsPos[8].Pos3D - SynthesisJointsPos[7].Pos3D);
+        // Chest 
+        //controllJoints[8].transform.rotation =
+        //    Quaternion.FromToRotation(new Vector3(0, 1, 0), SynthesisJointsPos[9].Pos3D - SynthesisJointsPos[8].Pos3D);
         // Left upper leg
+        //Quaternion upperLegGlobalRot = Quaternion.FromToRotation(new Vector3(0, -1, 0), SynthesisJointsPos[1].Pos3D - SynthesisJointsPos[0].Pos3D);
+        //controllJoints[0].transform.localRotation =  upperLegGlobalRot * controllJoints[6].transform.rotation;
         controllJoints[0].transform.rotation =
             Quaternion.FromToRotation(new Vector3(0, -1, 0), SynthesisJointsPos[1].Pos3D - SynthesisJointsPos[0].Pos3D);
         // Left knee
+        //Quaternion lowerLegGlobalRot = Quaternion.FromToRotation(new Vector3(0, -1, 0), SynthesisJointsPos[2].Pos3D - SynthesisJointsPos[1].Pos3D);
+        //controllJoints[1].transform.localRotation = controllJoints[6].transform.rotation * Quaternion.Inverse(controllJoints[0].transform.localRotation)  * lowerLegGlobalRot;
         controllJoints[1].transform.rotation =
-            Quaternion.FromToRotation(new Vector3(0, -1, 0), SynthesisJointsPos[2].Pos3D- SynthesisJointsPos[1].Pos3D);
+            Quaternion.FromToRotation(new Vector3(0, -1, 0), SynthesisJointsPos[2].Pos3D - SynthesisJointsPos[1].Pos3D);
         // Right upper leg
         controllJoints[3].transform.rotation =
             Quaternion.FromToRotation(new Vector3(0, -1, 0), SynthesisJointsPos[4].Pos3D- SynthesisJointsPos[3].Pos3D);
@@ -148,6 +164,8 @@ public class positionApplyTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //avatarRootOB.rotation *= Quaternion.Euler(0, (int)rotationOfAvatarInY, 0);
+
         curPosition = new Vector3();
         curPosition = controllJoints[2].transform.localPosition;
 
@@ -214,5 +232,6 @@ public class positionApplyTest : MonoBehaviour
             computeRigJointsRotAndApply();
         if (applyRotationOfAvatarAlongY)
             rotateAvatarAlongY(rotationOfAvatarInY);
+
     }
 }

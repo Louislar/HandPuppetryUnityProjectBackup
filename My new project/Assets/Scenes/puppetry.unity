@@ -344,6 +344,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &2087191447
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2087191448}
+  m_Layer: 0
+  m_Name: AppleRespawnPt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2087191448
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087191447}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.5, y: 2.58, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1245361762580859374}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &42210862767996880
 GameObject:
   m_ObjectHideFlags: 0
@@ -777,7 +808,8 @@ Transform:
   m_LocalPosition: {x: 3.22, y: 0.08, z: 2.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2087191448}
   m_Father: {fileID: 2845522}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -872,7 +904,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1249940671365525726}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3371f9e5bebec5b40977cd65879b0d2a, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -1188,7 +1220,8 @@ MonoBehaviour:
   rigHintJoints: []
   curPosition: {x: 0, y: 0, z: 0}
   applyRotationOfAvatarAlongY: 1
-  rotationOfAvatarInY: 90
+  rotationOfAvatarInY: 0
+  avatarRootOB: {fileID: 1998760145842995231}
   isReadSynthesisPositions: 0
   isDirectApplySynthesisPositions: 0
   isApplySynthesisRotations: 1
@@ -1206,7 +1239,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1222399025330674341}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2, y: 0, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3623,11 +3656,11 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5309109939465451647}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3371f9e5bebec5b40977cd65879b0d2a, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 661464e19c087564badb2bf5230c842c, type: 3}
 --- !u!1 &6953063577224500641
@@ -4382,8 +4415,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.23557445, y: 0.60177356, z: 0.4020283}
-  m_Center: {x: 0.00555111, y: 0.013736358, z: 0.015734576}
+  m_Size: {x: 0.23557478, y: 0.7552824, z: 0.40202895}
+  m_Center: {x: 0.005551113, y: -0.063018, z: 0.01573458}
 --- !u!54 &8489187080723286459
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4828,7 +4861,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isShaking: 0
-  appleGO: {fileID: 5473569773201198281, guid: fd8e0760db14a534a89257f68a4f2a8c, type: 3}
+  appleGO: {fileID: 2570180613291149955, guid: 46dbcad31bca8944497fca62d028d6c6, type: 3}
+  appleRespawnPt: {fileID: 2087191448}
 --- !u!4 &9031998827468511330
 Transform:
   m_ObjectHideFlags: 0
