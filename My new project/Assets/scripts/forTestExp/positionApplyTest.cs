@@ -70,8 +70,8 @@ public class positionApplyTest : MonoBehaviour
     {
         Debug.DrawRay(originHipPosition + correctOrigin, SynthesisJointsPos[0].Pos3D, Color.green);
         // Hip
-        controllJoints[6].transform.rotation =
-            Quaternion.FromToRotation(new Vector3(-0.08207779f, -0.06751716f, -0.01599556f), SynthesisJointsPos[0].Pos3D);
+        //controllJoints[6].transform.rotation =
+        //    Quaternion.FromToRotation(new Vector3(-0.08207779f, -0.06751716f, -0.01599556f), SynthesisJointsPos[0].Pos3D);
         // Left upper leg
         controllJoints[0].transform.rotation =
             Quaternion.FromToRotation(new Vector3(0, -1, 0), SynthesisJointsPos[1].Pos3D - SynthesisJointsPos[0].Pos3D);

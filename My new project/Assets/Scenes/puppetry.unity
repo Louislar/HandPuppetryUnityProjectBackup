@@ -627,6 +627,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8489187080723286457}
+  - component: {fileID: 8489187080723286459}
+  - component: {fileID: 8489187080723286458}
+  - component: {fileID: 8489187080723286460}
   m_Layer: 0
   m_Name: mixamorig_LeftFoot
   m_TagString: Untagged
@@ -679,6 +682,7 @@ GameObject:
   - component: {fileID: 1222399025330674347}
   - component: {fileID: 1222399025330674344}
   - component: {fileID: 1998760145842995230}
+  - component: {fileID: 1998760145842995232}
   m_Layer: 0
   m_Name: testMixamoAnimation
   m_TagString: Untagged
@@ -770,7 +774,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9018358907072337354}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.76, y: 0.27299166, z: 2.29}
+  m_LocalPosition: {x: 3.22, y: 0.08, z: 2.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1067,7 +1071,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverOn: 1
   updatePosToAvatar: 1
-  updateWristPosToAvatarRootPos: 1
+  updateWristPosToAvatarRootPos: 0
   avatarController: {fileID: 1222399025330674347}
   positionApplyTest: {fileID: 1998760145842995230}
   accessURLs: []
@@ -1214,6 +1218,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1998760145842995232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222399025330674341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d1c1b19e6dbc2342974a899514e8bb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  legCollisionOB: {fileID: 8489187080723286460}
+  treeControllerOBs:
+  - {fileID: 9018358907072337355}
 --- !u!4 &2023183163826510184
 Transform:
   m_ObjectHideFlags: 0
@@ -4352,6 +4371,47 @@ Transform:
   m_Father: {fileID: 729357681599103132}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8489187080723286458
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1161681145922150306}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.23557445, y: 0.60177356, z: 0.4020283}
+  m_Center: {x: 0.00555111, y: 0.013736358, z: 0.015734576}
+--- !u!54 &8489187080723286459
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1161681145922150306}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &8489187080723286460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1161681145922150306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c02b1c44b05f0a4cbd85224140318f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8490834647015305779
 GameObject:
   m_ObjectHideFlags: 0
@@ -4747,6 +4807,7 @@ GameObject:
   - component: {fileID: 3482845751145212177}
   - component: {fileID: 2146988950602970408}
   - component: {fileID: 8910510165242736283}
+  - component: {fileID: 9018358907072337355}
   m_Layer: 0
   m_Name: Tree_03
   m_TagString: Untagged
@@ -4754,6 +4815,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &9018358907072337355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9018358907072337354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79ca7fb08603a2d4aa93c1612b6eed7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isShaking: 0
+  appleGO: {fileID: 5473569773201198281, guid: fd8e0760db14a534a89257f68a4f2a8c, type: 3}
 --- !u!4 &9031998827468511330
 Transform:
   m_ObjectHideFlags: 0
