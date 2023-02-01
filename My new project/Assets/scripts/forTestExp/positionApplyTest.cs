@@ -26,7 +26,11 @@ public class positionApplyTest : MonoBehaviour
     public bool isApplyToRigJoints;
     [Header("Wrist position read/apply in settings")]
     public bool isApplyWristToRootPosition;
+    // Suitable scale (-10, -5, 1)
     public Vector3 wristRootPosScale;
+    // 校正hip postition位置, 讓它在run time出現在我想要的位置 
+    // default是 (0, 0, 0) 
+    public Vector3 wristRootPosCorrection;
     public string readInHumanPositionFile;
     public Vector3 originHipPosition;
     public Vector3 correctOrigin;
@@ -59,8 +63,8 @@ public class positionApplyTest : MonoBehaviour
         if (isApplyWristToRootPosition)
         {
             this.transform.localPosition = new Vector3(
-                originalRootPos.x + handLandmarks.data[0].x * wristRootPosScale.x,
-                originalRootPos.y + handLandmarks.data[0].y * wristRootPosScale.y,
+                originalRootPos.x + handLandmarks.data[0].x * wristRootPosScale.x + wristRootPosCorrection.x,
+                originalRootPos.y + handLandmarks.data[0].y * wristRootPosScale.y + wristRootPosCorrection.y,
                 this.transform.localPosition.z
                 );
         }

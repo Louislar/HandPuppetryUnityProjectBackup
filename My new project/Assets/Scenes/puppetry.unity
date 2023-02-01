@@ -1220,7 +1220,7 @@ MonoBehaviour:
   rigHintJoints: []
   curPosition: {x: 0, y: 0, z: 0}
   applyRotationOfAvatarAlongY: 1
-  rotationOfAvatarInY: 0
+  rotationOfAvatarInY: 90
   avatarRootOB: {fileID: 1998760145842995231}
   isReadSynthesisPositions: 0
   isDirectApplySynthesisPositions: 0
@@ -1228,6 +1228,7 @@ MonoBehaviour:
   isApplyToRigJoints: 0
   isApplyWristToRootPosition: 1
   wristRootPosScale: {x: -10, y: -5, z: 1}
+  wristRootPosCorrection: {x: 0, y: 0, z: 0}
   readInHumanPositionFile: 
   originHipPosition: {x: 1.9927852, y: 0.97411835, z: 2.233169}
   correctOrigin: {x: 0, y: 0, z: 0}
@@ -1266,6 +1267,7 @@ MonoBehaviour:
   legCollisionOB: {fileID: 8489187080723286460}
   treeControllerOBs:
   - {fileID: 9018358907072337355}
+  projectileController: {fileID: 0}
 --- !u!4 &2023183163826510184
 Transform:
   m_ObjectHideFlags: 0

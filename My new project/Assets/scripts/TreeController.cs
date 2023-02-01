@@ -9,8 +9,7 @@ public class TreeController : MonoBehaviour
     public Transform appleRespawnPt;
 
     public void dropApple()
-    {
-        // TODO 
+    { 
         Instantiate(appleGO, appleRespawnPt.position, Quaternion.Euler(new Vector3(0, 0, 0)), transform);
     }
 

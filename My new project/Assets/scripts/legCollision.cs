@@ -6,6 +6,7 @@ using UnityEngine;
 public class legCollision : MonoBehaviour
 {
     public event Action LegCollisionEvent;
+    public event Action<Transform> LegCollideEvent;
 
     // Start is called before the first frame update
     void Start()
@@ -32,5 +33,16 @@ public class legCollision : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        print("collision set: " + collision.transform.name);
+        LegCollideEvent?.Invoke(collision.transform);
+
+        //if (collision.transform.name == "Fence_01")
+        //{
+            
+        //}
     }
 }
