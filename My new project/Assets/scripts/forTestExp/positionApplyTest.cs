@@ -12,6 +12,15 @@ public class positionApplyTest : MonoBehaviour
         back = 180
     }
 
+    public enum ActionTypes
+    {
+        frontKick,
+        sideKick,
+        runSprint,
+        jumpJoy,
+        twoLegJump
+    }
+
     public List<GameObject> controllJoints; // Fill this list in the Unity inspector
     public List<GameObject> rigHintJoints;
     public Vector3 curPosition;
@@ -24,6 +33,8 @@ public class positionApplyTest : MonoBehaviour
     public bool isDirectApplySynthesisPositions;
     public bool isApplySynthesisRotations;
     public bool isApplyToRigJoints;
+
+
     [Header("Wrist position read/apply in settings")]
     public bool isApplyWristToRootPosition;
     // Suitable scale (-10, -5, 1)
@@ -31,6 +42,9 @@ public class positionApplyTest : MonoBehaviour
     // 校正hip postition位置, 讓它在run time出現在我想要的位置 
     // default是 (0, 0, 0) 
     public Vector3 wristRootPosCorrection;
+    // hip position的最小數值
+    // default是這個gameobject的position (2, 0, 2) 
+    public Vector3 wristRootPosLowerBound;
     public string readInHumanPositionFile;
     public Vector3 originHipPosition;
     public Vector3 correctOrigin;
@@ -38,6 +52,9 @@ public class positionApplyTest : MonoBehaviour
     private MediaPipeResult readInHumanPositionResult;
     private handLMsController.JointBone[] SynthesisJointsPos;
     private Vector3 originalRootPos;
+
+    [Header("Action settings")]
+    public ActionTypes actionType;
 
     /// <summary>
     /// 透過修改hip rotation達到旋轉整個avatar的目的
@@ -62,10 +79,17 @@ public class positionApplyTest : MonoBehaviour
     {
         if (isApplyWristToRootPosition)
         {
-            this.transform.localPosition = new Vector3(
+            // 如果position小於lower bound則使用lower bound代替 
+            Vector3 tmpVec = new Vector3(
                 originalRootPos.x + handLandmarks.data[0].x * wristRootPosScale.x + wristRootPosCorrection.x,
                 originalRootPos.y + handLandmarks.data[0].y * wristRootPosScale.y + wristRootPosCorrection.y,
                 this.transform.localPosition.z
+                );
+
+            this.transform.localPosition = new Vector3(
+                tmpVec.x > wristRootPosLowerBound.x ? tmpVec.x : wristRootPosLowerBound.x,
+                tmpVec.y > wristRootPosLowerBound.y ? tmpVec.y : wristRootPosLowerBound.y,
+                tmpVec.z
                 );
         }
     }

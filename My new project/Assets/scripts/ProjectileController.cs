@@ -5,6 +5,7 @@ using UnityEngine;
 public class ProjectileController : MonoBehaviour
 {
     public List<GameObject> projectilePrefabs;
+    public List<Vector3> projectilePrefabsInstantiateRotation;
     public List<ProjectileObject> projectiles;
     public Transform respawnPt;
     public float gameElapseTime;
@@ -29,7 +30,7 @@ public class ProjectileController : MonoBehaviour
 
     public void generateProjectile(int ind)
     {
-        GameObject instantGO = Instantiate(projectilePrefabs[ind], respawnPt.position, Quaternion.identity);
+        GameObject instantGO = Instantiate(projectilePrefabs[ind], respawnPt.position, Quaternion.Euler(projectilePrefabsInstantiateRotation[ind]));
         ProjectileObject instantPO = instantGO.GetComponent<ProjectileObject>();
         projectiles.Add(instantPO);
         destroyProjectile(instantPO, 3);
@@ -46,7 +47,8 @@ public class ProjectileController : MonoBehaviour
         float gameStartTime = Time.time;
         while(Time.time - gameStartTime < gameElapseTime)
         {
-            generateProjectile(0);
+            int tmpRandomInd = Random.Range(0, projectilePrefabs.Count);
+            generateProjectile(tmpRandomInd);
             yield return new WaitForSeconds(projectileGenerateFreq);
         }
         yield return null;

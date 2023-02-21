@@ -17,7 +17,10 @@ public class HttpReceiver : MonoBehaviour
     void Start()
     {
         // 不斷交替對不同url發出請求 
-        accessURLs = new List<string> { "localhost:8080", "localhost:8080/wrist" };
+        //accessURLs = new List<string> { "localhost:8080", "localhost:8080/wrist" };
+        accessURLs = new List<string> {
+            "localhost:8080/", "localhost:8080/wrist"
+        };
         if (serverOn)
         {
             StartCoroutine(ReceiveTextFromHttpServer());
@@ -30,7 +33,15 @@ public class HttpReceiver : MonoBehaviour
         int urlIndex = 0;
         while (true)
         {
-            UnityWebRequest www = UnityWebRequest.Get(accessURLs[urlIndex]);
+            UnityWebRequest www;
+            if (urlIndex==0)
+            {
+                www = UnityWebRequest.Get(accessURLs[urlIndex] + positionApplyTest.actionType);
+            }
+            else
+            {
+                www = UnityWebRequest.Get(accessURLs[urlIndex]);
+            }
             yield return www.SendWebRequest();
 
             if (www.result != UnityWebRequest.Result.Success)
