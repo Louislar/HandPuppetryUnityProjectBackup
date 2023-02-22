@@ -63,6 +63,10 @@ public class ProjectileController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown("space"))
+        {
+            generateProjectile(1);
+            print("space key was pressed");
+        }
     }
 }
