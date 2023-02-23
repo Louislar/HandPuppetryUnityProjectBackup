@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System;
 using UnityEngine;
 
 public class positionApplyTest : MonoBehaviour
@@ -54,7 +56,47 @@ public class positionApplyTest : MonoBehaviour
     private Vector3 originalRootPos;
 
     [Header("Action settings")]
+    public UIController uiController;
     public ActionTypes actionType;
+    public List<ActionSettings> actionSettings;
+
+    [Header("Keyboard control settings")]
+    public Vector2 keyBoardControlScale;    // Set (0,0) indicates that no effect 
+
+    /// <summary>
+    /// 根據action settings檔案, 改變目前的設定檔 
+    /// </summary>
+    public void applyActionSettings(ActionTypes actionTypeIn)
+    {
+        List<ActionSettings> _actionSetting = actionSettings.Where(p => p.actionType == actionTypeIn).ToList();
+        if (_actionSetting.Count != 0)
+        {
+            isApplyWristToRootPosition = _actionSetting[0].isApplyWristToRootPosition;
+            wristRootPosScale = _actionSetting[0].wristRootPosScale;
+            wristRootPosCorrection = _actionSetting[0].wristRootPosCorrection;
+            wristRootPosLowerBound = _actionSetting[0].wristRootPosLowerBound;
+            rotationOfAvatarInY = _actionSetting[0].rotationOfAvatarInY;
+        }
+        else
+            print(actionTypeIn + " 's setting not found!");
+    }
+
+    /// <summary>
+    /// 載入action的設定檔案, 
+    /// </summary>
+    public void loadActionSettings()
+    {
+
+    }
+
+    /// <summary>
+    /// 修改當前使用的action類型
+    /// </summary>
+    /// <param name="actionTypeIn"></param>
+    public void setActionType(ActionTypes actionTypeIn)
+    {
+        actionType = actionTypeIn;
+    }
 
     /// <summary>
     /// 透過修改hip rotation達到旋轉整個avatar的目的
@@ -192,6 +234,13 @@ public class positionApplyTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        uiController.buttonListener += (typeStr) => {
+            ActionTypes _actionType;
+            Enum.TryParse(typeStr, out _actionType);
+            setActionType(_actionType);
+            applyActionSettings(_actionType);
+        };
+
         //avatarRootOB.rotation *= Quaternion.Euler(0, (int)rotationOfAvatarInY, 0);
 
         curPosition = new Vector3();
@@ -238,6 +287,22 @@ public class positionApplyTest : MonoBehaviour
     {
         if (isApplyToRigJoints)
             applyToRigJoints();
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            this.transform.Translate(new Vector3(0, 0, -keyBoardControlScale.y));
+        }
+        else if (Input.GetKey(KeyCode.DownArrow))
+        {
+            this.transform.Translate(new Vector3(0, 0, keyBoardControlScale.y));
+        }
+        else if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            this.transform.Translate(new Vector3(keyBoardControlScale.y, 0, 0));
+        }
+        else if (Input.GetKey(KeyCode.RightArrow))
+        {
+            this.transform.Translate(new Vector3(-keyBoardControlScale.y, 0, 0));
+        }
     }
 
     private void LateUpdate()
