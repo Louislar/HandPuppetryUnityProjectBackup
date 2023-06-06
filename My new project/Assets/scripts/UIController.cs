@@ -49,6 +49,13 @@ public class UIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        for(int i=0; i<5;++i)
+        {
+            if (Input.GetKeyDown(i + KeyCode.Alpha1))
+            {
+                buttons[i].onClick.Invoke();
+                //print($"Number {i + KeyCode.Alpha1} key was pressed");
+            }
+        }
     }
 }
